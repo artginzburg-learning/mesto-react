@@ -1,38 +1,15 @@
-import logo from './images/logo.svg';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
     <div className="page">
-      <header className="header">
-        <a target="_self" href="https://github.com/artginzburg/mesto" className="logo header__logo">
-          <img className="logo__img" alt="Mesto" src={logo} />
-        </a>
-      </header>
+      <Header />
 
-      <main className="content">
+      <Main />
 
-        <section className="profile">
-          <button type="button" className="profile__avatar-container">
-            <img alt="Аватар" className="profile__avatar" src="#" />
-          </button>
-          <div className="profile__info">
-            <h1 className="profile__name">Неизвестный</h1>
-            <p className="profile__description">Потеряно соединение с сервером</p>
-            <button type="button" className="profile__edit-button"></button>
-          </div>
-          <button type="button" className="profile__add-button"></button>
-        </section>
-
-        <section className="elements">
-          <ul className="elements__list">
-          </ul>
-        </section>
-
-      </main>
-
-      <footer className="footer">
-        <a target="_blank" rel="noreferrer" href="https://github.com/artginzburg" className="footer__copyright">&copy; 2021 Art Ginzburg</a>
-      </footer>
+      <Footer />
 
       <section className="popup" id="avatar-editor">
         <div className="popup__container">
