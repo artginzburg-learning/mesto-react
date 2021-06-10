@@ -1,12 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './images/logo.svg';
 
 function App() {
   return (
     <div className="page">
       <header className="header">
         <a target="_self" href="https://github.com/artginzburg/mesto" className="logo header__logo">
-          <img className="logo__img" alt="Mesto" src="<%=require('./images/logo.svg')%>" />
+          <img className="logo__img" alt="Mesto" src={logo} />
         </a>
       </header>
 
@@ -14,7 +13,7 @@ function App() {
 
         <section className="profile">
           <button type="button" className="profile__avatar-container">
-            <img src="<%=require('./images/avatar.jpg')%>" alt="Жак-Ив Кусто" className="profile__avatar" />
+            <img alt="Аватар" className="profile__avatar" src="#" />
           </button>
           <div className="profile__info">
             <h1 className="profile__name">Неизвестный</h1>
@@ -32,7 +31,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <a target="_blank" href="https://github.com/artginzburg" className="footer__copyright">&copy; 2021 Art Ginzburg</a>
+        <a target="_blank" rel="noreferrer" href="https://github.com/artginzburg" className="footer__copyright">&copy; 2021 Art Ginzburg</a>
       </footer>
 
       <section className="popup" id="avatar-editor">
@@ -95,10 +94,10 @@ function App() {
 
       <template id="element-template">
         <li className="element">
-          <img className="element__image" />
+          <img className="element__image" alt="#" />
           <button type="reset" className="element__trash-button"></button>
           <div className="element__container">
-            <h2 className="element__title"></h2>
+            <h2 className="element__title">#</h2>
             <div className="element__likes">
               <button type="button" className="element__like-button"></button>
               <p className="element__like-counter"></p>
