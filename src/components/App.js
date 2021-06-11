@@ -6,9 +6,7 @@ function App() {
   return (
     <>
       <Header />
-
       <Main />
-
       <Footer />
 
       <section className="popup" id="avatar-editor">
