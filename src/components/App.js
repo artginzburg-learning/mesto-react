@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 function App() {
   return (
-    <div className="page">
+    <>
       <Header />
 
       <Main />
@@ -82,7 +82,7 @@ function App() {
           </div>
         </li>
       </template>
-    </div>
+    </>
   );
 }
 
