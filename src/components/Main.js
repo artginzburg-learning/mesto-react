@@ -1,30 +1,17 @@
-function Main() {
-  function handleEditAvatarClick() {
-    document.querySelector('#avatar-editor').classList.add('popup_opened');
-  }
-
-  function handleEditProfileClick() {
-    document.querySelector('#profile-editor').classList.add('popup_opened');
-
-  }
-
-  function handleAddPlaceClick() {
-    document.querySelector('#element-editor').classList.add('popup_opened');
-  }
-
+function Main(props) {
   return (
     <main className="content">
 
       <section className="profile">
-        <button onClick={handleEditAvatarClick} type="button" className="profile__avatar-container">
+        <button onClick={props.onEditAvatar} type="button" className="profile__avatar-container">
           <img alt="Аватар" className="profile__avatar" src="#" />
         </button>
         <div className="profile__info">
           <h1 className="profile__name">Неизвестный</h1>
           <p className="profile__description">Потеряно соединение с сервером</p>
-          <button onClick={handleEditProfileClick} type="button" className="profile__edit-button" />
+          <button onClick={props.onEditProfile} type="button" className="profile__edit-button" />
         </div>
-        <button onClick={handleAddPlaceClick} type="button" className="profile__add-button" />
+        <button onClick={props.onAddPlace} type="button" className="profile__add-button" />
       </section>
 
       <section className="elements">
