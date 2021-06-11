@@ -22,14 +22,13 @@ function Main() {
         <div className="profile__info">
           <h1 className="profile__name">Неизвестный</h1>
           <p className="profile__description">Потеряно соединение с сервером</p>
-          <button onClick={handleEditProfileClick} type="button" className="profile__edit-button"></button>
+          <button onClick={handleEditProfileClick} type="button" className="profile__edit-button" />
         </div>
-        <button onClick={handleAddPlaceClick} type="button" className="profile__add-button"></button>
+        <button onClick={handleAddPlaceClick} type="button" className="profile__add-button" />
       </section>
 
       <section className="elements">
-        <ul className="elements__list">
-        </ul>
+        <ul className="elements__list" />
       </section>
 
     </main>

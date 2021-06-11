@@ -3,7 +3,7 @@ function PopupWithForm(props) {
     <section className="popup" id={props.name}>
       <div className="popup__container">
 
-        <button type="reset" className="popup__close-button"></button>
+        <button type="reset" className="popup__close-button" />
         <h2 className="popup__title">{props.title}</h2>
 
         <form className="popup__form" action="#">
