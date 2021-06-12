@@ -1,7 +1,11 @@
 function Card(props) {
+  function handleClick() {
+    props.onCardClick(props.card);
+  }
+
   return (
     <>
-      <img className="element__image" alt={props.card.name} src={props.card.link} />
+      <img onClick={handleClick} className="element__image" alt={props.card.name} src={props.card.link} />
       <button type="reset" className="element__trash-button" />
       <div className="element__container">
         <h2 className="element__title">{props.card.name}</h2>

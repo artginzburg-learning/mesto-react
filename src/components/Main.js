@@ -36,7 +36,7 @@ class Main extends React.Component {
 
         this.state.cards.forEach(card => {
           const cardElement =
-            <Card card={card} />
+            <Card onCardClick={this.props.onCardClick} card={card} />
           ;
 
           const cardPlaceholder = document.createElement('li');
