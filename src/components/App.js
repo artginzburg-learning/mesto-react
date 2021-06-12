@@ -13,17 +13,14 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(0);
 
   function handleEditAvatarClick() {
-    // document.querySelector('#avatar-editor').classList.add('popup_opened');
     setIsEditAvatarPopupOpen(1);
   }
 
   function handleEditProfileClick() {
-    // document.querySelector('#profile-editor').classList.add('popup_opened');
     setIsEditProfilePopupOpen(1);
   }
 
   function handleAddPlaceClick() {
-    // document.querySelector('#element-editor').classList.add('popup_opened');
     setIsAddPlacePopupOpen(1);
   }
 
@@ -36,7 +33,11 @@ function App() {
   return (
     <>
       <Header />
-      <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} />
+      <Main
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}
+      />
       <Footer />
 
       <PopupWithForm isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} title="Редактировать профиль" name="profile-editor">
@@ -63,20 +64,6 @@ function App() {
       <PopupWithForm onClose={closeAllPopups} title="Вы уверены?" name="delete-confirmation" buttonTitle="Да" />
 
       <ImagePopup />
-
-      <template id="element-template">
-        <li className="element">
-          <img className="element__image" alt="#" />
-          <button type="reset" className="element__trash-button" />
-          <div className="element__container">
-            <h2 className="element__title">#</h2>
-            <div className="element__likes">
-              <button type="button" className="element__like-button" />
-              <p className="element__like-counter" />
-            </div>
-          </div>
-        </li>
-      </template>
     </>
   );
 }

@@ -1,6 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
+import Card from './Card';
 
 import api from '../utils/api';
+import { cardSelectors } from '../utils/utils';
 
 class Main extends React.Component {
   constructor(props) {
@@ -9,7 +13,8 @@ class Main extends React.Component {
     this.state = {
       userName: 'Неизвестный',
       userDescription: 'Потеряно соединение с сервером',
-      userAvatar: '#',
+      userAvatar: '',
+      cards: [],
     };
   }
 
@@ -22,6 +27,29 @@ class Main extends React.Component {
           userAvatar: res.avatar,
         })
       );
+
+    api.getInitialCards()
+      .then(res => {
+        this.setState({
+          cards: res
+        });
+
+        this.state.cards.forEach(card => {
+          const cardElement =
+            <Card card={card} />
+          ;
+
+          const cardPlaceholder = document.createElement('li');
+          cardPlaceholder.className = 'element';
+
+          document.querySelector(cardSelectors.listSelector).append(cardPlaceholder);
+
+          ReactDOM.render(
+            cardElement,
+            cardPlaceholder
+          );
+        });
+      });
   }
 
   render() {
