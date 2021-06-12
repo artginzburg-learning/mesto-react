@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import Card from './Card';
 
 import api from '../utils/api';
-import { cardSelectors } from '../utils/utils';
 
 class Main extends React.Component {
   constructor(props) {
@@ -29,27 +27,11 @@ class Main extends React.Component {
       );
 
     api.getInitialCards()
-      .then(res => {
+      .then(res => 
         this.setState({
           cards: res
-        });
-
-        this.state.cards.forEach(card => {
-          const cardElement =
-            <Card onCardClick={this.props.onCardClick} card={card} />
-          ;
-
-          const cardPlaceholder = document.createElement('li');
-          cardPlaceholder.className = 'element';
-
-          document.querySelector(cardSelectors.listSelector).append(cardPlaceholder);
-
-          ReactDOM.render(
-            cardElement,
-            cardPlaceholder
-          );
-        });
-      });
+        })
+      );
   }
 
   render() {
@@ -69,7 +51,11 @@ class Main extends React.Component {
         </section>
 
         <section className="elements">
-          <ul className="elements__list" />
+          <ul className="elements__list">
+            {this.state.cards.map(card =>
+              <Card key={card._id} onCardClick={this.props.onCardClick} card={card} />
+            )}
+          </ul>
         </section>
 
       </main>
