@@ -2,7 +2,7 @@
 
 > Mesto project frontend on React.
 
-Project 10: <kbd>Currently in development...</kbd>
+Project 10: <kbd>[Reviewed and accepted version of the project](https://github.com/artginzburg/mesto-react/tree/project-10_final)</kbd>
 
 ## Description
 
@@ -14,7 +14,7 @@ Project 10: <kbd>Currently in development...</kbd>
 # Clone the repository
 git clone https://github.com/artginzburg/mesto-react
 # Enter the project directory
-cd mesto
+cd mesto-react
 # Install dependencies
 npm i
 ```
