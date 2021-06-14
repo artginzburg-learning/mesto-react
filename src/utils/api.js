@@ -61,11 +61,8 @@ class Api {
   deleteCard = cardId =>
     this._customFetch(`cards/${cardId}`, 'DELETE');
 
-  likeCard = cardId =>
-    this._customFetch(`cards/likes/${cardId}`, 'PUT');
-
-  unLikeCard = cardId =>
-    this._customFetch(`cards/likes/${cardId}`, 'DELETE');
+  changeLikeCardStatus = (cardId, status) =>
+  this._customFetch(`cards/likes/${cardId}`, status ? 'PUT' : 'DELETE');
 
   updateAvatar = ({ avatar }) =>
     this._customFetch('users/me/avatar', 'PATCH', {
