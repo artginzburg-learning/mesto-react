@@ -38,6 +38,19 @@ function App() {
     setSelectedCard({});
   }
 
+  const escHandler = React.useCallback(e => {
+    if (e.key === 'Escape') {
+      closeAllPopups();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    document.addEventListener('keydown', escHandler, false);
+
+    return () =>
+      document.removeEventListener('keydown', escHandler, false);
+  }, [escHandler]);
+
   return (
     <>
       <Header />
