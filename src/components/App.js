@@ -8,9 +8,8 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 import { popupSelectors } from '../utils/utils';
-import api from '../utils/api';
 
-import CurrentUserContext from '../contexts/CurrentUserContext';
+import { CurrentUserProvider } from '../contexts/CurrentUserContext';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -18,15 +17,6 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
   const [selectedCard, setSelectedCard] = React.useState({});
-
-  const [currentUser, setCurrentUser] = React.useState({
-    name: 'Неизвестный',
-    about: 'Потеряно соединение с сервером',
-    avatar: '',
-  });
-  React.useEffect(() => {
-    api.getUserInfo().then(setCurrentUser);
-  }, []);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -72,7 +62,7 @@ function App() {
   }, [escHandler]);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserProvider>
       <Header />
       <Main
         onEditProfile={handleEditProfileClick}
@@ -106,7 +96,7 @@ function App() {
       <PopupWithForm onClose={handlePopupClick} title="Вы уверены?" name="delete-confirmation" buttonTitle="Да" />
 
       <ImagePopup card={selectedCard} onClose={handlePopupClick} />
-    </CurrentUserContext.Provider>
+    </CurrentUserProvider>
   );
 }
 
