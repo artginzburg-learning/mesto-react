@@ -4,28 +4,18 @@ import Card from './Card';
 
 import api from '../utils/api';
 
+import CurrentUserContext from '../contexts/CurrentUserContext';
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userName: 'Неизвестный',
-      userDescription: 'Потеряно соединение с сервером',
-      userAvatar: '',
       cards: [],
     };
   }
 
   componentDidMount() {
-    api.getUserInfo()
-      .then(res =>
-        this.setState({
-          userName: res.name,
-          userDescription: res.about,
-          userAvatar: res.avatar,
-        })
-      );
-
     api.getInitialCards()
       .then(res => 
         this.setState({
@@ -34,17 +24,19 @@ class Main extends React.Component {
       );
   }
 
+  static contextType = CurrentUserContext;
+
   render() {
     return (
       <main className="content">
 
         <section className="profile">
           <button onClick={this.props.onEditAvatar} type="button" className="profile__avatar-container">
-            <img alt="Аватар" className="profile__avatar" src={this.state.userAvatar} />
+            <img alt="Аватар" className="profile__avatar" src={this.context.avatar} />
           </button>
           <div className="profile__info">
-            <h1 className="profile__name">{this.state.userName}</h1>
-            <p className="profile__description">{this.state.userDescription}</p>
+            <h1 className="profile__name">{this.context.name}</h1>
+            <p className="profile__description">{this.context.about}</p>
             <button onClick={this.props.onEditProfile} type="button" className="profile__edit-button" />
           </div>
           <button onClick={this.props.onAddPlace} type="button" className="profile__add-button" />
