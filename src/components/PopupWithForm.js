@@ -8,7 +8,7 @@ function PopupWithForm(props) {
         <button type="reset" className={popupSelectors.closeButtonClass} />
         <h2 className="popup__title">{props.title}</h2>
 
-        <form className="popup__form" action="#">
+        <form onSubmit={props.onSubmit} className="popup__form" action="#">
 
           {props.children}
 

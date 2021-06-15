@@ -7,6 +7,8 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
+import EditProfilePopup from './popups/EditProfilePopup';
+
 import { popupSelectors } from '../utils/utils';
 
 import { CurrentUserProvider } from '../contexts/CurrentUserContext';
@@ -30,9 +32,7 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleCardClick(card) {
-    setSelectedCard(card);
-  }
+  const handleCardClick = setSelectedCard;
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
@@ -47,6 +47,8 @@ function App() {
       closeAllPopups();
     }
   }
+
+  const handleUpdateUser = closeAllPopups;
 
   const escHandler = React.useCallback(e => {
     if (e.key === 'Escape') {
@@ -63,6 +65,7 @@ function App() {
 
   return (
     <CurrentUserProvider>
+
       <Header />
       <Main
         onEditProfile={handleEditProfileClick}
@@ -72,13 +75,7 @@ function App() {
       />
       <Footer />
 
-      <PopupWithForm isOpen={isEditProfilePopupOpen} onClose={handlePopupClick} title="Редактировать профиль" name="profile-editor">
-        <input type="text" autoComplete="name" autoCapitalize="words" className="popup__input" name="name" id="profile-name" placeholder="Имя" minLength="2" maxLength="40" required />
-        <p className="popup__error" id="profile-name-error" />
-
-        <input type="text" className="popup__input" name="about" id="profile-about" placeholder="О себе" minLength="2" maxLength="200" required />
-        <p className="popup__error" id="profile-about-error" />
-      </PopupWithForm>
+      <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={handlePopupClick} />
 
       <PopupWithForm isOpen={isAddPlacePopupOpen} onClose={handlePopupClick} title="Новое место" name="element-editor" buttonTitle="Создать">
         <input type="text" className="popup__input" name="title" id="element-title" placeholder="Название" minLength="2" maxLength="30" required />
@@ -96,6 +93,7 @@ function App() {
       <PopupWithForm onClose={handlePopupClick} title="Вы уверены?" name="delete-confirmation" buttonTitle="Да" />
 
       <ImagePopup card={selectedCard} onClose={handlePopupClick} />
+
     </CurrentUserProvider>
   );
 }
