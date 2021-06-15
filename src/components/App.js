@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { popupSelectors } from '../utils/utils';
+
+import { CurrentUserProvider } from '../contexts/CurrentUserContext';
+
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -8,10 +12,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 import EditProfilePopup from './popups/EditProfilePopup';
-
-import { popupSelectors } from '../utils/utils';
-
-import { CurrentUserProvider } from '../contexts/CurrentUserContext';
+import EditAvatarPopup from './popups/EditAvatarPopup';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -49,6 +50,7 @@ function App() {
   }
 
   const handleUpdateUser = closeAllPopups;
+  const handleUpdateAvatar = closeAllPopups;
 
   const escHandler = React.useCallback(e => {
     if (e.key === 'Escape') {
@@ -85,10 +87,7 @@ function App() {
         <p className="popup__error" id="element-link-error" />
       </PopupWithForm>
 
-      <PopupWithForm isOpen={isEditAvatarPopupOpen} onClose={handlePopupClick} title="Обновить аватар" name="avatar-editor">
-        <input type="url" className="popup__input" name="avatar" id="profile-avatar" placeholder="Ссылка на картинку" required />
-        <p className="popup__error" id="profile-avatar-error" />
-      </PopupWithForm>
+      <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={handlePopupClick} />
 
       <PopupWithForm onClose={handlePopupClick} title="Вы уверены?" name="delete-confirmation" buttonTitle="Да" />
 

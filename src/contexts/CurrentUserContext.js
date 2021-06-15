@@ -44,7 +44,7 @@ function useCurrentUserDispatcher() {
 }
 
 async function updateUser(dispatch, user, updates) {
-  dispatch(updates);
+  dispatch({...user, ...updates});
 
   try {
     const updatedUser = await api.editProfile(updates);
@@ -55,4 +55,16 @@ async function updateUser(dispatch, user, updates) {
   }
 }
 
-export { CurrentUserProvider, useCurrentUser, useCurrentUserDispatcher, updateUser };
+async function updateAvatar(dispatch, user, updates) {
+  dispatch({...user, ...updates});
+
+  try {
+    const updatedUser = await api.updateAvatar(updates);
+    dispatch(updatedUser);
+  } catch (error) {
+    dispatch(user);
+    throw error;
+  }
+}
+
+export { CurrentUserProvider, useCurrentUser, useCurrentUserDispatcher, updateUser, updateAvatar };
