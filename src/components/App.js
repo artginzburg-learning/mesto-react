@@ -9,7 +9,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 
-import PopupWithForm from './PopupWithForm';
+// import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 import EditProfilePopup from './popups/EditProfilePopup';
@@ -173,7 +173,7 @@ function App() {
 
       <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={handlePopupClick} />
 
-      <PopupWithForm onClose={handlePopupClick} title="Вы уверены?" name="delete-confirmation" buttonTitle="Да" />
+      {/* <PopupWithForm onClose={handlePopupClick} title="Вы уверены?" name="delete-confirmation" buttonTitle="Да" /> */}
 
       <ImagePopup card={selectedCard} onClose={handlePopupClick} />
 

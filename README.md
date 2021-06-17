@@ -41,12 +41,14 @@ In the project directory, you can run:
 
 - Transfer all the features from *mesto* to *mesto-react*
   - [ ] Live form validation
+  - [ ] Card delete confirmation popup
   - [x] Card preview
   - [x] Card add
   - [x] Card delete
   - [x] Card like/unlike
   - [x] Profile edit
   - [x] Avatar edit
+  - [x] Close popups on `Esc` or overlay click
 
 ## Tech
 
