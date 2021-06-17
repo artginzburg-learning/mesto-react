@@ -14,6 +14,7 @@ import ImagePopup from './ImagePopup';
 
 import EditProfilePopup from './popups/EditProfilePopup';
 import EditAvatarPopup from './popups/EditAvatarPopup';
+import AddPlacePopup from './popups/AddPlacePopup';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -24,11 +25,13 @@ function App() {
 
   const [cards, setCards] = React.useState([]);
 
+
   const currentUser = useCurrentUser();
 
   React.useEffect(() =>
     api.getInitialCards().then(setCards)
   , []);
+
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -57,6 +60,7 @@ function App() {
   }
 
   const handleCardClick = setSelectedCard;
+
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -88,6 +92,16 @@ function App() {
   const handleUpdateUser = closeAllPopups;
   const handleUpdateAvatar = closeAllPopups;
 
+  function handleAddPlaceSubmit(title, link) {
+    api.addCard(title, link)
+      .then(newCard => 
+        setCards([...cards, newCard])
+      );
+
+    closeAllPopups();
+  }
+
+
   const escHandler = React.useCallback(e => {
     if (e.key === 'Escape') {
       closeAllPopups();
@@ -118,13 +132,7 @@ function App() {
 
       <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={handlePopupClick} />
 
-      <PopupWithForm isOpen={isAddPlacePopupOpen} onClose={handlePopupClick} title="Новое место" name="element-editor" buttonTitle="Создать">
-        <input type="text" className="popup__input" name="title" id="element-title" placeholder="Название" minLength="2" maxLength="30" required />
-        <p className="popup__error" id="element-title-error" />
-
-        <input type="url" className="popup__input" name="link" id="element-link" placeholder="Ссылка на картинку" required />
-        <p className="popup__error" id="element-link-error" />
-      </PopupWithForm>
+      <AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={handlePopupClick} />
 
       <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={handlePopupClick} />
 
