@@ -1,8 +1,9 @@
 import React from 'react';
 
+import api from '../utils/api';
 import { popupSelectors } from '../utils/utils';
 
-import { CurrentUserProvider } from '../contexts/CurrentUserContext';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 import Header from './Header';
 import Main from './Main';
@@ -21,6 +22,42 @@ function App() {
 
   const [selectedCard, setSelectedCard] = React.useState({});
 
+  const [cards, setCards] = React.useState([]);
+
+  const currentUser = useCurrentUser();
+
+  React.useEffect(() =>
+    api.getInitialCards().then(setCards)
+  , []);
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then(newCard =>
+        setCards(
+          cards.map(c =>
+            c._id === card._id
+              ? newCard
+              : c
+          )
+        )
+      );
+  }
+
+  function handleCardDelete(card) {
+    api.deleteCard(card._id)
+      .then(() =>
+        setCards(
+          cards.filter(c =>
+            c._id !== card._id
+          )
+        )
+      );
+  }
+
+  const handleCardClick = setSelectedCard;
+
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
@@ -33,7 +70,6 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  const handleCardClick = setSelectedCard;
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
@@ -66,14 +102,17 @@ function App() {
   }, [escHandler]);
 
   return (
-    <CurrentUserProvider>
+    <>
 
       <Header />
       <Main
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
+        cards={cards}
         onCardClick={handleCardClick}
+        onCardLike={handleCardLike}
+        onCardDelete={handleCardDelete}
       />
       <Footer />
 
@@ -93,7 +132,7 @@ function App() {
 
       <ImagePopup card={selectedCard} onClose={handlePopupClick} />
 
-    </CurrentUserProvider>
+    </>
   );
 }
 
