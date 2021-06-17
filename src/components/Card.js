@@ -3,7 +3,13 @@ import { useCurrentUser } from '../contexts/CurrentUserContext';
 function Card(props) {
   const card = props.card;
 
+  card.likes = card.likes ?? [];
+
   const currentUser = useCurrentUser();
+
+  if (card.isTemporarilyLocal) {
+    card.owner = currentUser;
+  }
 
   const isOwn = card.owner._id === currentUser._id;
 
@@ -22,10 +28,12 @@ function Card(props) {
   }
 
   function handleLikeClick() {
+    if (card.isTemporarilyLocal) return;
     props.onCardLike(card);
   }
 
   function handleDeleteClick() {
+    if (card.isTemporarilyLocal) return;
     props.onCardDelete(card);
   }
 

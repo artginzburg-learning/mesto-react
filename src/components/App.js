@@ -67,7 +67,7 @@ function App() {
     }
   }
 
-  async function handleCardDelete(card) {
+  function handleCardDelete(card) {
     const oldCards = cards;
 
     setCards(
@@ -77,9 +77,9 @@ function App() {
     );
 
     api.deleteCard(card._id)
-      .catch(err => {
+      .catch(error => {
         setCards(oldCards);
-        throw err;
+        throw error;
       });
   }
 
@@ -117,9 +117,22 @@ function App() {
   const handleUpdateAvatar = closeAllPopups;
 
   function handleAddPlaceSubmit(title, link) {
+    const oldCards = cards;
+
+    const expectedCard = {
+      isTemporarilyLocal: true,
+      name: title,
+      link
+    };
+
+    setCards([expectedCard, ...cards]);
+
     api.addCard(title, link)
       .then(newCard =>
         setCards([newCard, ...cards])
+      )
+      .catch(() =>
+        setCards(oldCards)
       );
 
     closeAllPopups();

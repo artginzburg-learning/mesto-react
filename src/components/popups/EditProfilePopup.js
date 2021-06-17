@@ -26,7 +26,7 @@ export default function EditProfilePopup(props) {
 
     props.onUpdateUser();
   }
-  
+
   return (
     <PopupWithForm {...props} onSubmit={handleSubmit} title="Редактировать профиль" name="profile-editor">
 
