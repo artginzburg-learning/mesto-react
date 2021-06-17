@@ -1,10 +1,8 @@
-import React from 'react';
-
 import Card from './Card';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-function Main(props) {
+export default function Main(props) {
   const currentUser = useCurrentUser();
 
   return (
@@ -33,5 +31,3 @@ function Main(props) {
     </main>
   );
 }
-
-export default Main;

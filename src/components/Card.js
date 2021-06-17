@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function Card(props) {
