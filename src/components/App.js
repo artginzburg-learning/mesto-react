@@ -33,30 +33,54 @@ function App() {
   , []);
 
 
-  function handleCardLike(card) {
+  async function handleCardLike(card) {
+    const oldCards = cards;
+
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, !isLiked)
-      .then(newCard =>
-        setCards(
-          cards.map(c =>
-            c._id === card._id
-              ? newCard
-              : c
-          )
+    const expectedCardLikes = isLiked
+      ? card.likes.filter(like => like._id !== currentUser._id)
+      : [...card.likes, currentUser];
+
+    const expectedCard = {...card, likes: expectedCardLikes};
+
+    setCards(
+      cards.map(c =>
+        c._id === card._id
+          ? expectedCard
+          : c
+      )
+    );
+
+    try {
+      const newCard = await api.changeLikeCardStatus(card._id, !isLiked);
+      setCards(
+        cards.map(c =>
+          c._id === card._id
+            ? newCard
+            : c
         )
       );
+    } catch (error) {
+      setCards(oldCards);
+      throw error;
+    }
   }
 
-  function handleCardDelete(card) {
+  async function handleCardDelete(card) {
+    const oldCards = cards;
+
+    setCards(
+      cards.filter(c =>
+        c._id !== card._id
+      )
+    );
+
     api.deleteCard(card._id)
-      .then(() =>
-        setCards(
-          cards.filter(c =>
-            c._id !== card._id
-          )
-        )
-      );
+      .catch(err => {
+        setCards(oldCards);
+        throw err;
+      });
   }
 
   const handleCardClick = setSelectedCard;
