@@ -37,6 +37,17 @@ In the project directory, you can run:
 
 <br>
 
+## To-do
+
+- Transfer all the features from *mesto* to *mesto-react*
+  - [ ] Live form validation
+  - [x] Card preview
+  - [x] Card add
+  - [x] Card delete
+  - [x] Card like/unlike
+  - [x] Profile edit
+  - [x] Avatar edit
+
 ## Tech
 
 - JSON API
