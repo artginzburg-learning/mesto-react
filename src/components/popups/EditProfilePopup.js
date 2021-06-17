@@ -19,12 +19,10 @@ export default function EditProfilePopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const newInfo = {
+    updateUser(setCurrentUser, currentUser, {
       name,
       about,
-    };
-
-    updateUser(setCurrentUser, currentUser, newInfo);
+    });
 
     props.onUpdateUser();
   }

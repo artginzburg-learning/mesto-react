@@ -10,6 +10,9 @@ export default function AddPlacePopup(props) {
     e.preventDefault();
 
     props.onAddPlace(title, link);
+
+    setTitle('');
+    setLink('');
   }
 
   return (

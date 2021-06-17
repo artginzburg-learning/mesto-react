@@ -13,9 +13,13 @@ export default function EditAvatarPopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    updateAvatar(setCurrentUser, currentUser, { avatar: ref.current.value });
+    updateAvatar(setCurrentUser, currentUser, {
+      avatar: ref.current.value
+    });
 
     props.onUpdateAvatar();
+
+    e.target.reset();
   }
 
   return (
