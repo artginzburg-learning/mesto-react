@@ -18,9 +18,7 @@ export default function EditProfilePopup(props) {
     setAbout(currentUser.about);
   }, [currentUser]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
+  function handleSubmit() {
     updateUser(setCurrentUser, currentUser, {
       name,
       about,

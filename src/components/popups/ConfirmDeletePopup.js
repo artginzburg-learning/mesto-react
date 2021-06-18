@@ -1,9 +1,7 @@
 import PopupWithForm from '../PopupWithForm';
 
 export default function ConfirmDeletePopup(props) {
-  function handleSubmit(e) {
-    e.preventDefault();
-
+  function handleSubmit() {
     props.onCardDelete(props.card);
   }
 

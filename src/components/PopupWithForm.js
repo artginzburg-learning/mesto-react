@@ -1,6 +1,18 @@
 import { popupSelectors } from '../utils/utils';
 
 function PopupWithForm(props) {
+  function handleSubmit(e) {
+    if (props.onSubmit) {
+      e.preventDefault();
+
+      props.onSubmit();
+    }
+
+    if (props.children) {
+      e.target.reset();
+    }
+  }
+
   return (
     <section onClick={props.onClose} className={'popup' + (props.isOpen ? ' popup_opened' : '')} id={props.name}>
       <div className="popup__container">
@@ -8,7 +20,7 @@ function PopupWithForm(props) {
         <button type="reset" className={popupSelectors.closeButtonClass} />
         <h2 className="popup__title">{props.title}</h2>
 
-        <form onSubmit={props.onSubmit} className="popup__form" action="#">
+        <form onSubmit={handleSubmit} className="popup__form" action="#">
 
           {props.children}
 

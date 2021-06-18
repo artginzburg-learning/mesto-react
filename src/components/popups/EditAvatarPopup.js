@@ -12,16 +12,12 @@ export default function EditAvatarPopup(props) {
   const currentUser = useCurrentUser();
   const setCurrentUser = useCurrentUserDispatcher();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
+  function handleSubmit() {
     updateAvatar(setCurrentUser, currentUser, {
       avatar: ref.current.value
     });
 
     props.onUpdateAvatar();
-
-    e.target.reset();
   }
 
   return (

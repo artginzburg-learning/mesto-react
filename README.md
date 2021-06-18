@@ -40,7 +40,7 @@ In the project directory, you can run:
 ## To-do
 
 - Transfer all the features from *mesto* to *mesto-react*
-  - [ ] Live form validation
+  - [x] Live form validation
   - [x] Card delete confirmation popup
   - [x] Card preview
   - [x] Card add

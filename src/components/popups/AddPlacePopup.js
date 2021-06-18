@@ -8,9 +8,7 @@ export default function AddPlacePopup(props) {
   const [title, setTitle] = useState('');
   const [link, setLink] = useState('');
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
+  function handleSubmit() {
     props.onAddPlace(title, link);
 
     setTitle('');
