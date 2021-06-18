@@ -10,9 +10,11 @@ const PopupInput = React.forwardRef((props, ref) => {
     : null
   ;
 
+  const required = props.required ?? true;
+
   return (
     <>
-      <input {...props} ref={ref} className="popup__input" type={type} minLength={props.minLength ?? minLength} />
+      <input {...props} ref={ref} className="popup__input" type={type} minLength={props.minLength ?? minLength} required={required} />
       <p className="popup__error" id={`${props.id}-error`} />
     </>
   )

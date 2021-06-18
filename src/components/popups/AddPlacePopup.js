@@ -26,9 +26,9 @@ export default function AddPlacePopup(props) {
   return (
     <PopupWithForm {...props} onSubmit={handleSubmit} title="Новое место" name="element-editor" buttonTitle="Создать">
 
-      <PopupInput value={title} onChange={handleTitleChange} name="title" id="element-title" placeholder="Название" maxLength="30" required />
+      <PopupInput value={title} onChange={handleTitleChange} name="title" id="element-title" placeholder="Название" maxLength="30" />
 
-      <PopupInput value={link} onChange={handleLinkChange} type="url" name="link" id="element-link" placeholder="Ссылка на картинку" required />
+      <PopupInput value={link} onChange={handleLinkChange} type="url" name="link" id="element-link" placeholder="Ссылка на картинку" />
 
     </PopupWithForm>
   );
