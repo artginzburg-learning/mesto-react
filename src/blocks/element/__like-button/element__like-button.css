@@ -16,6 +16,9 @@
 
   transition-property: opacity background-image;
   transition-duration: .2s;
+
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .element__like-button:hover {

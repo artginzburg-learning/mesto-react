@@ -23,6 +23,9 @@
 
   transition-property: opacity;
   transition-duration: .2s;
+
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .profile__add-button:hover {
