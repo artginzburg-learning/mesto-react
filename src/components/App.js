@@ -1,5 +1,6 @@
 import React from 'react';
 
+import initiateLocalStorageJSON from '../utils/localStorageJSON';
 import api from '../utils/api';
 import { popupSelectors } from '../utils/utils';
 
@@ -15,14 +16,7 @@ import AddPlacePopup from './popups/AddPlacePopup';
 import ConfirmDeletePopup from './popups/ConfirmDeletePopup';
 import ImagePopup from './popups/ImagePopup';
 
-const localStorageJSON = {
-  get cards() {
-    return localStorage.cards ? JSON.parse(localStorage.cards) : [];
-  },
-  set cards(newValue) {
-    return localStorage.cards = JSON.stringify(newValue);
-  }
-};
+const localStorageJSON = initiateLocalStorageJSON('cards', []);
 
 export default function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
