@@ -4,6 +4,8 @@ import { useCurrentUser, useCurrentUserDispatcher, updateAvatar } from '../../co
 
 import PopupWithForm from '../PopupWithForm';
 
+import PopupInput from './PopupInput';
+
 export default function EditAvatarPopup(props) {
   const ref = createRef();
 
@@ -25,8 +27,7 @@ export default function EditAvatarPopup(props) {
   return (
     <PopupWithForm {...props} onSubmit={handleSubmit} title="Обновить аватар" name="avatar-editor">
 
-      <input ref={ref} type="url" className="popup__input" name="avatar" id="profile-avatar" placeholder="Ссылка на картинку" required />
-      <p className="popup__error" id="profile-avatar-error" />
+      <PopupInput ref={ref} type="url" name="avatar" id="profile-avatar" placeholder="Ссылка на картинку" required />
 
     </PopupWithForm>
   );

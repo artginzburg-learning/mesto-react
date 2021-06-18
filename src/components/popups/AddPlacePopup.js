@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import PopupWithForm from '../PopupWithForm';
 
+import PopupInput from './PopupInput';
+
 export default function AddPlacePopup(props) {
   const [title, setTitle] = useState('');
   const [link, setLink] = useState('');
@@ -26,11 +28,9 @@ export default function AddPlacePopup(props) {
   return (
     <PopupWithForm {...props} onSubmit={handleSubmit} title="Новое место" name="element-editor" buttonTitle="Создать">
 
-      <input value={title} onChange={handleTitleChange} type="text" className="popup__input" name="title" id="element-title" placeholder="Название" minLength="2" maxLength="30" required />
-      <p className="popup__error" id="element-title-error" />
+      <PopupInput value={title} onChange={handleTitleChange} name="title" id="element-title" placeholder="Название" maxLength="30" required />
 
-      <input value={link} onChange={handleLinkChange} type="url" className="popup__input" name="link" id="element-link" placeholder="Ссылка на картинку" required />
-      <p className="popup__error" id="element-link-error" />
+      <PopupInput value={link} onChange={handleLinkChange} type="url" name="link" id="element-link" placeholder="Ссылка на картинку" required />
 
     </PopupWithForm>
   );

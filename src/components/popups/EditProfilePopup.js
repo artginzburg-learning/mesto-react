@@ -4,6 +4,8 @@ import { useCurrentUser, useCurrentUserDispatcher, updateUser } from '../../cont
 
 import PopupWithForm from '../PopupWithForm';
 
+import PopupInput from './PopupInput';
+
 export default function EditProfilePopup(props) {
   const [name, setName] = React.useState('');
   const [about, setAbout] = React.useState('');
@@ -38,11 +40,9 @@ export default function EditProfilePopup(props) {
   return (
     <PopupWithForm {...props} onSubmit={handleSubmit} title="Редактировать профиль" name="profile-editor">
 
-      <input value={name} onChange={handleNameChange} type="text" autoComplete="name" autoCapitalize="words" className="popup__input" name="name" id="profile-name" placeholder="Имя" minLength="2" maxLength="40" required />
-      <p className="popup__error" id="profile-name-error" />
+      <PopupInput value={name} onChange={handleNameChange} autoComplete="name" autoCapitalize="words" name="name" id="profile-name" placeholder="Имя" maxLength="40" required />
 
-      <input value={about} onChange={handleAboutChange} type="text" className="popup__input" name="about" id="profile-about" placeholder="О себе" minLength="2" maxLength="200" required />
-      <p className="popup__error" id="profile-about-error" />
+      <PopupInput value={about} onChange={handleAboutChange} name="about" id="profile-about" placeholder="О себе" maxLength="200" required />
 
     </PopupWithForm>
   );

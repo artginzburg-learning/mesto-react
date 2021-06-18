@@ -51,8 +51,8 @@ In the project directory, you can run:
   - [x] Close popups on `Esc` or overlay click
 
 - Ideas
-  - [ ] Create FormInput component that wraps up input, its error status, and repeating props
   - [ ] Use localStorage to make last saved data appear instantly after page refresh (which might look strange with cards, but is a must-have for user profile information)
+  - [x] Create FormInput component that wraps up input, its error status, and repeating props
 
 ## Tech
 
