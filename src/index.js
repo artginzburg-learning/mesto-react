@@ -6,8 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
 
-import FormValidator from './utils/FormValidator';
-import { defaultFormConfig } from './utils/utils';
+import enableValidations from './utils/enableValidations';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,18 +17,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-const popupsToValidate = [
-  '#element-editor',
-  '#avatar-editor',
-  '#profile-editor',
-];
-popupsToValidate.forEach(popupSelector => {
-  const profileEditorValidator = new FormValidator(
-    defaultFormConfig,
-    document.querySelector(popupSelector).querySelector(defaultFormConfig.formSelector)
-  );
-  profileEditorValidator.enableValidation();
-});
+enableValidations();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
