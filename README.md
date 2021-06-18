@@ -41,7 +41,7 @@ In the project directory, you can run:
 
 - Transfer all the features from *mesto* to *mesto-react*
   - [ ] Live form validation
-  - [ ] Card delete confirmation popup
+  - [x] Card delete confirmation popup
   - [x] Card preview
   - [x] Card add
   - [x] Card delete

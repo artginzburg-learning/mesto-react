@@ -4,7 +4,7 @@ function ImagePopup(props) {
   const card = props.card;
 
   return (
-    <section onClick={props.onClose} className={'popup popup_type_image' + (card.name ? ' popup_opened' : '')} id="image-viewer">
+    <section onClick={props.onClose} className={'popup popup_type_image' + (props.isOpen ? ' popup_opened' : '')} id="image-viewer">
       <figure className="popup__figure">
 
         <button type="button" className={`${popupSelectors.closeButtonClass} popup__close-button_parent-corners_straight`} />
