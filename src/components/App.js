@@ -15,6 +15,15 @@ import AddPlacePopup from './popups/AddPlacePopup';
 import ConfirmDeletePopup from './popups/ConfirmDeletePopup';
 import ImagePopup from './popups/ImagePopup';
 
+const localStorageJSON = {
+  get cards() {
+    return localStorage.cards ? JSON.parse(localStorage.cards) : [];
+  },
+  set cards(newValue) {
+    return localStorage.cards = JSON.stringify(newValue);
+  }
+};
+
 export default function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -24,15 +33,21 @@ export default function App() {
 
   const [selectedCard, setSelectedCard] = React.useState({});
 
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = React.useState(localStorageJSON.cards ?? []);
 
 
   const currentUser = useCurrentUser();
 
-  React.useEffect(() =>
-    api.getInitialCards().then(setCards)
-  , []);
+  React.useEffect(() => {
+    api.getInitialCards().then(result => {
+      localStorageJSON.cards = result;
+      return setCards(result);
+    })
+  }, [setCards]);
 
+  React.useEffect(() => {
+    localStorageJSON.cards = cards;
+  }, [cards]);
 
   async function handleCardLike(card) {
     const oldCards = cards;
