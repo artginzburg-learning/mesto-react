@@ -159,10 +159,12 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
-    document.addEventListener('keydown', escHandler, false);
+    const listenerArgs = [ 'keydown', escHandler, false ];
+
+    document.addEventListener(...listenerArgs);
 
     return () =>
-      document.removeEventListener('keydown', escHandler, false);
+      document.removeEventListener(...listenerArgs);
   }, [escHandler]);
 
   return (
