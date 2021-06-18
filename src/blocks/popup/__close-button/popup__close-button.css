@@ -23,6 +23,9 @@
 
   top: -38px;
   right: -38px;
+
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .popup__close-button:hover {

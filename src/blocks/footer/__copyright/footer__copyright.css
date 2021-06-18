@@ -7,6 +7,8 @@
 
   transition-property: opacity;
   transition-duration: .2s;
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 .footer__copyright:hover {
