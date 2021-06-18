@@ -11,6 +11,10 @@ function PopupWithForm(props) {
     if (props.children) {
       e.target.reset();
     }
+
+    if (props.onSubmit) {
+      document.activeElement.blur(); // fixes mobile keyboard being stuck on the screen after form submission (due to `event.preventDefault()`)
+    }
   }
 
   return (
