@@ -1,4 +1,4 @@
-import { popupSelectors } from '../utils/utils';
+import { popupSelectors } from '../../utils/utils';
 
 function ImagePopup(props) {
   const card = props.card;
