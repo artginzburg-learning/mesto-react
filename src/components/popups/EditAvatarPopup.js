@@ -1,6 +1,6 @@
 import { createRef } from 'react';
 
-import { useCurrentUser, useCurrentUserDispatcher, updateAvatar } from '../../contexts/CurrentUserContext';
+import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
 
 import PopupWithForm from '../PopupWithForm';
 
@@ -13,9 +13,9 @@ export default function EditAvatarPopup(props) {
   const setCurrentUser = useCurrentUserDispatcher();
 
   function handleSubmit() {
-    updateAvatar(setCurrentUser, currentUser, {
+    sendApiUpdate(setCurrentUser, currentUser, {
       avatar: ref.current.value
-    });
+    }, 'updateAvatar');
 
     props.onUpdateAvatar();
   }

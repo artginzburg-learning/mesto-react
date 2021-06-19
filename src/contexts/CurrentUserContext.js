@@ -53,11 +53,11 @@ function useCurrentUserDispatcher() {
   return context;
 }
 
-async function updateUser(dispatch, user, updates) {
+async function sendApiUpdate(dispatch, user, updates, func) {
   dispatch({...user, ...updates});
 
   try {
-    const updatedUser = await api.editProfile(updates);
+    const updatedUser = await api[func](updates);
     dispatch(updatedUser);
   } catch (error) {
     dispatch(user);
@@ -65,16 +65,4 @@ async function updateUser(dispatch, user, updates) {
   }
 }
 
-async function updateAvatar(dispatch, user, updates) {
-  dispatch({...user, ...updates});
-
-  try {
-    const updatedUser = await api.updateAvatar(updates);
-    dispatch(updatedUser);
-  } catch (error) {
-    dispatch(user);
-    throw error;
-  }
-}
-
-export { CurrentUserProvider, useCurrentUser, useCurrentUserDispatcher, updateUser, updateAvatar };
+export { CurrentUserProvider, useCurrentUser, useCurrentUserDispatcher, sendApiUpdate };

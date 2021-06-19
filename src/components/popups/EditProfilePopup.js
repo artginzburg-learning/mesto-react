@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useCurrentUser, useCurrentUserDispatcher, updateUser } from '../../contexts/CurrentUserContext';
+import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
 
 import PopupWithForm from '../PopupWithForm';
 
@@ -19,10 +19,10 @@ export default function EditProfilePopup(props) {
   }, [currentUser]);
 
   function handleSubmit() {
-    updateUser(setCurrentUser, currentUser, {
+    sendApiUpdate(setCurrentUser, currentUser, {
       name,
       about,
-    });
+    }, 'editProfile');
 
     props.onUpdateUser();
   }
