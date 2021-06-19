@@ -27,7 +27,7 @@ export default function App() {
 
   const [selectedCard, setSelectedCard] = React.useState({});
 
-  const [cards, setCards] = React.useState(localStorageJSON.cards ?? []);
+  const [cards, setCards] = React.useState(localStorageJSON.cards);
 
 
   const currentUser = useCurrentUser();
