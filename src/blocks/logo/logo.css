@@ -5,6 +5,8 @@
   transition-duration: .2s;
 }
 
-.logo:hover {
-  opacity: .6;
+@media (hover: hover) {
+  .logo:hover {
+    opacity: .6;
+  }
 }

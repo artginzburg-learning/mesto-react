@@ -26,8 +26,10 @@
   user-select: none;
 }
 
-.profile__edit-button:hover {
-  opacity: .6;
+@media (hover: hover) {
+  .profile__edit-button:hover {
+    opacity: .6;
+  }
 }
 
 @media screen and (max-width: 767px) {

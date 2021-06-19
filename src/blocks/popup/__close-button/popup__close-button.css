@@ -28,8 +28,10 @@
   user-select: none;
 }
 
-.popup__close-button:hover {
-  opacity: .6;
+@media (hover: hover) {
+  .popup__close-button:hover {
+    opacity: .6;
+  }
 }
 
 @media screen and (max-width: 767px) {

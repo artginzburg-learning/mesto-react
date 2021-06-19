@@ -26,8 +26,10 @@
   margin-top: 0;
 }
 
-.popup__button:hover {
-  opacity: .8;
+@media (hover: hover) {
+  .popup__button:hover {
+    opacity: .8;
+  }
 }
 
 .popup__button:disabled {

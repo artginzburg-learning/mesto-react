@@ -28,6 +28,8 @@
   user-select: none;
 }
 
-.element__trash-button:hover {
-  opacity: .6;
+@media (hover: hover) {
+  .element__trash-button:hover {
+    opacity: .6;
+  }
 }
