@@ -1,32 +1,23 @@
 import React from 'react';
 
-import initiateLocalStorageJSON from '../utils/localStorageJSON';
+import useStateWithLocalStorage from '../utils/localStorageJSON';
 import api from '../utils/api';
 
-const localStorageJSON = initiateLocalStorageJSON('currentUser', {});
-
 const defaultUserState = {
-  name: localStorageJSON.currentUser.name ?? 'Неизвестный',
-  about: localStorageJSON.currentUser.about ?? 'Потеряно соединение с сервером',
-  avatar: localStorageJSON.currentUser.avatar ?? '',
+  name: 'Неизвестный',
+  about: 'Потеряно соединение с сервером',
+  avatar: '',
 };
 
 const CurrentUserStateContext = React.createContext();
 const CurrentUserDispatchContext = React.createContext();
 
 function CurrentUserProvider({ children }) {
-  const [currentUser, setCurrentUser] = React.useState(defaultUserState);
+  const [currentUser, setCurrentUser] = useStateWithLocalStorage('currentUser', defaultUserState);
 
   React.useEffect(() => {
-    api.getUserInfo().then(result => {
-      localStorageJSON.currentUser = result;
-      return setCurrentUser(result);
-    });
+    api.getUserInfo().then(setCurrentUser);
   }, [setCurrentUser]);
-
-  React.useEffect(() => {
-    localStorageJSON.currentUser = currentUser;
-  }, [currentUser])
 
   return (
     <CurrentUserStateContext.Provider value={currentUser}>
