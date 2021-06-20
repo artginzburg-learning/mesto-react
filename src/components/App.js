@@ -2,7 +2,6 @@ import React from 'react';
 
 import useStateWithLocalStorage from '../utils/localStorageJSON';
 import api from '../utils/api';
-import { popupSelectors } from '../utils/utils';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
@@ -121,7 +120,7 @@ export default function App() {
   }
 
   function handlePopupClick(e) {
-    if (e.target === e.currentTarget || e.target.classList.contains(popupSelectors.closeButtonClass)) {
+    if (e.target === e.currentTarget) {
       closeAllPopups();
     }
   }

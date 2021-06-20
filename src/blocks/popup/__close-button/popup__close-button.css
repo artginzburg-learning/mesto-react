@@ -28,6 +28,10 @@
   user-select: none;
 }
 
+.popup__close-button:active {
+  pointer-events: none;
+}
+
 @media (hover: hover) {
   .popup__close-button:hover {
     opacity: .6;
