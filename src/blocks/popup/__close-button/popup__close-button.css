@@ -30,6 +30,7 @@
 
 .popup__close-button:active {
   pointer-events: none;
+  opacity: .6;
 }
 
 @media (hover: hover) {
