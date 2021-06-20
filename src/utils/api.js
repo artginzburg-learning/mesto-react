@@ -13,6 +13,11 @@ class Api {
     this._headers = options.headers;
   }
 
+  _paths = {
+    users: 'users/me',
+    cards: 'cards'
+  };
+
   _handleFetch = res =>
     res.ok
       ? res.json()
@@ -39,33 +44,33 @@ class Api {
   }
 
   getUserInfo() {
-    return this._customFetch('users/me');
+    return this._customFetch(this._paths.users);
   }
 
   getInitialCards() {
-    return this._customFetch('cards');
+    return this._customFetch(this._paths.cards);
   }
 
   editProfile = ({ name, about }) =>
-    this._customFetch('users/me', 'PATCH', {
+    this._customFetch(this._paths.users, 'PATCH', {
       name,
       about
     });
 
   addCard = (name, link) =>
-    this._customFetch('cards', 'POST', {
+    this._customFetch(this._paths.cards, 'POST', {
       name,
       link
     });
 
   deleteCard = cardId =>
-    this._customFetch(`cards/${cardId}`, 'DELETE');
+    this._customFetch(`${this._paths.cards}/${cardId}`, 'DELETE');
 
   changeLikeCardStatus = (cardId, status) =>
-  this._customFetch(`cards/likes/${cardId}`, status ? 'PUT' : 'DELETE');
+    this._customFetch(`${this._paths.cards}/likes/${cardId}`, status ? 'PUT' : 'DELETE');
 
   updateAvatar = ({ avatar }) =>
-    this._customFetch('users/me/avatar', 'PATCH', {
+    this._customFetch(`${this._paths.users}/avatar`, 'PATCH', {
       avatar
     });
 }

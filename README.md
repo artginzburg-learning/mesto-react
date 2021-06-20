@@ -41,10 +41,10 @@ In the project directory, you can run:
 
 - Ideas (sorted by concern)
   - [ ] Dive into HOC for Popup or hotkey handling
-  - [ ] Create Popup react component so that ImagePopup and PopupWithForm use exactly identical modal window logic
   - [ ] Add locales and English language
   - [x] Use localStorage to make last saved data appear instantly after page refresh (which might look strange with cards, but is a must-have for user profile information)
   - [x] Create FormInput component that wraps up input, its error status, and repeating props
+  - [ ] Create Popup react component so that ImagePopup and PopupWithForm use exactly identical modal window logic
 
 - Transfer all the features from *mesto* to *mesto-react*
   - [x] Live form validation

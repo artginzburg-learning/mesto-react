@@ -30,7 +30,7 @@ export default function App() {
   const currentUser = useCurrentUser();
 
   React.useEffect(() => {
-    api.getInitialCards().then(setCards)
+    api.getInitialCards().then(setCards);
   }, [setCards]);
 
   async function handleCardLike(card) {
