@@ -4,17 +4,22 @@ import PopupWithForm from '../PopupWithForm';
 
 import PopupInput from './PopupInput';
 
+const defaults = {
+  title: '',
+  link: ''
+};
+
 export default function AddPlacePopup(props) {
-  const [title, setTitle] = useState('');
-  const [link, setLink] = useState('');
+  const [title, setTitle] = useState(defaults.title);
+  const [link, setLink] = useState(defaults.link);
 
   function handleSubmit() {
     props.onAddPlace(title, link);
   }
 
   function handleReset() {
-    setTitle('');
-    setLink('');
+    setTitle(defaults.title);
+    setLink(defaults.link);
   }
 
   function handleTitleChange(e) {

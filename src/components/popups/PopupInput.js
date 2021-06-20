@@ -1,20 +1,31 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
-const PopupInput = React.forwardRef((props, ref) => {
-  const defaultType = 'text';
+const defaults = {
+  type: 'text',
+  required: true,
+  minLength: 2,
+};
 
-  const type = props.type ?? defaultType;
+const PopupInput = forwardRef((props, ref) => {
+  const type = props.type ?? defaults.type;
 
-  const minLength = (type === defaultType)
-    ? 2
+  const required = props.required ?? defaults.required;
+
+  const conditionalMinLength = (type === defaults.type)
+    ? defaults.minLength
     : null
   ;
+  const minLength = props.minLength ?? conditionalMinLength;
 
-  const required = props.required ?? true;
+  const finalProps = {
+    type,
+    minLength,
+    required
+  };
 
   return (
     <>
-      <input {...props} ref={ref} className="popup__input" type={type} minLength={props.minLength ?? minLength} required={required} />
+      <input {...props} ref={ref} className="popup__input" {...finalProps} />
       <p className="popup__error" id={`${props.id}-error`} />
     </>
   )
