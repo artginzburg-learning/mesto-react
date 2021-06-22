@@ -2,8 +2,22 @@ import Card from './Card';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
+const maximumCardsQuantity = 30;
+
+const defaultCard = {
+  isTemporarilyLocal: true,
+  name: 'Загрузка...'
+};
+
+const defaultCards = [];
+for (let i = 0; i < maximumCardsQuantity; i++) {
+  defaultCards.push(defaultCard);
+}
+
 export default function Main(props) {
   const currentUser = useCurrentUser();
+
+  const cards = props.cards.length ? props.cards : defaultCards;
 
   return (
     <main className="content">
@@ -22,7 +36,7 @@ export default function Main(props) {
 
       <section className="elements">
         <ul className="elements__list">
-          {props.cards.map(card =>
+          {cards.map(card =>
             <Card key={card._id ?? Math.random()} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete} card={card} />
           )}
         </ul>
