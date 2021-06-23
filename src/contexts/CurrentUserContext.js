@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useStateWithLocalStorage from '../utils/localStorageJSON';
+import useStateWithLocalStorage from '../hooks/useStateWithLocalStorage';
 import api from '../utils/api';
 
 const defaultUserState = {
