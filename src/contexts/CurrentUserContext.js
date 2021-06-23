@@ -44,12 +44,19 @@ function useCurrentUserDispatcher() {
   return context;
 }
 
+function objectsAreEqual(first, second) {
+  return JSON.stringify(first) === JSON.stringify(second);
+}
+
 async function sendApiUpdate(dispatch, user, updates, func) {
-  dispatch({...user, ...updates});
+  const expectedUser = {...user, ...updates};
+  dispatch(expectedUser);
 
   try {
     const updatedUser = await api[func](updates);
-    dispatch(updatedUser);
+    if (!objectsAreEqual(expectedUser, updatedUser)) {
+      dispatch(updatedUser);
+    }
   } catch (error) {
     dispatch(user);
     throw error;
