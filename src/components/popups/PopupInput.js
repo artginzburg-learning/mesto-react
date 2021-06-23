@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, createRef, useEffect } from 'react';
 
 const defaults = {
   type: 'text',
@@ -6,7 +6,9 @@ const defaults = {
   minLength: 2,
 };
 
-const PopupInput = forwardRef((props, ref) => {
+const PopupInput = forwardRef((props, forwardedRef) => {
+  const ref = forwardedRef ?? createRef();
+
   const type = props.type ?? defaults.type;
 
   const required = props.required ?? defaults.required;
@@ -20,12 +22,23 @@ const PopupInput = forwardRef((props, ref) => {
   const finalProps = {
     type,
     minLength,
-    required
+    required,
+    ref
   };
+
+  const { isFocused, ...inputProps } = props;
+
+  useEffect(() => {
+    if (isFocused && ref && ref.current) {
+      setTimeout(() => {
+        ref.current.focus();
+      }, 50);
+    }
+  }, [isFocused, ref]);
 
   return (
     <>
-      <input {...props} ref={ref} className="popup__input" {...finalProps} />
+      <input {...inputProps} className="popup__input" {...finalProps} />
       <p className="popup__error" id={`${props.id}-error`} />
     </>
   )

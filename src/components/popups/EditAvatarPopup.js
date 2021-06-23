@@ -23,7 +23,7 @@ export default function EditAvatarPopup(props) {
   return (
     <PopupWithForm {...props} onSubmit={handleSubmit} title="Обновить аватар" name="avatar-editor">
 
-      <PopupInput ref={ref} type="url" name="avatar" id="profile-avatar" placeholder="Ссылка на картинку" />
+      <PopupInput isFocused={props.isOpen} ref={ref} type="url" name="avatar" id="profile-avatar" placeholder="Ссылка на картинку" />
 
     </PopupWithForm>
   );

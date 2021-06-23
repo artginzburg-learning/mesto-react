@@ -38,7 +38,7 @@ export default function EditProfilePopup(props) {
   return (
     <PopupWithForm {...props} onSubmit={handleSubmit} title="Редактировать профиль" name="profile-editor">
 
-      <PopupInput value={name} onChange={handleNameChange} autoComplete="name" autoCapitalize="words" name="name" id="profile-name" placeholder="Имя" maxLength="40" />
+      <PopupInput isFocused={props.isOpen} value={name} onChange={handleNameChange} autoComplete="name" autoCapitalize="words" name="name" id="profile-name" placeholder="Имя" maxLength="40" />
 
       <PopupInput value={about} onChange={handleAboutChange} name="about" id="profile-about" placeholder="О себе" maxLength="200" />
 
