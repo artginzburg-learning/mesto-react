@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { popupSelectors } from '../utils/utils';
 
 function PopupWithForm(props) {
@@ -11,11 +13,13 @@ function PopupWithForm(props) {
     if (props.children) {
       e.target.reset();
     }
+  }
 
-    if (props.onSubmit) {
+  useEffect(() => {
+    if (!props.isOpen) {
       document.activeElement.blur(); // fixes mobile keyboard being stuck on the screen after form submission (due to `event.preventDefault()`)
     }
-  }
+  }, [props.isOpen]);
 
   return (
     <section onClick={props.onClose} className={'popup' + (props.isOpen ? ' popup_opened' : '')} id={props.name}>
