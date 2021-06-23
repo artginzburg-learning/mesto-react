@@ -29,9 +29,9 @@ const PopupInput = forwardRef((props, forwardedRef) => {
   const { isFocused, ...inputProps } = props;
 
   useEffect(() => {
-    if (isFocused && ref && ref.current) {
+    if (isFocused && ref && ref.current && (ref.current.parentElement !== document.activeElement.parentElement)) {
       setTimeout(() => {
-        ref.current.focus();
+        ref && ref.current && ref.current.focus();
       }, 50);
     }
   }, [isFocused, ref]);
