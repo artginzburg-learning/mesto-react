@@ -1,27 +1,33 @@
-import React from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export default function useStateWithLocalStorage(computed, defaultForComputed) {
-  const [currentState, updateCurrentState] = React.useState(
+  const [currentState, updateCurrentState] = useState(
     localStorage[computed]
       ? JSON.parse(localStorage[computed])
       : defaultForComputed
   );
 
-  const localStorageChanged = React.useCallback(e => {
+  const localStorageChanged = useCallback(e => {
     if (e.key === computed) {
-      updateCurrentState(JSON.parse(e.newValue));
+      updateCurrentState(
+        e.newValue
+          ? JSON.parse(e.newValue)
+          : defaultForComputed
+      );
     }
-  }, [computed]);
+  }, [computed, defaultForComputed]);
 
-  const setCurrentState = React.useCallback(value => {
+  const setCurrentState = useCallback(value => {
     localStorage[computed] = JSON.stringify(value);
     updateCurrentState(value);
   }, [computed]);
 
-  React.useEffect(() => {
-    window.addEventListener('storage', localStorageChanged);
+  useEffect(() => {
+    const listenerArgs = ['storage', localStorageChanged];
+
+    window.addEventListener(...listenerArgs);
     return () => {
-      window.removeEventListener('storage', localStorageChanged);
+      window.removeEventListener(...listenerArgs);
     }
   }, [localStorageChanged]);
 
