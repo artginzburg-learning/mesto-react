@@ -40,6 +40,7 @@ In the project directory, you can run:
 ## To-do
 
 - Ideas (sorted by concern)
+  - [ ] Clear popups when they are not opened, but keep the open/close transition
   - [ ] Dive into HOC for Popup or hotkey handling
   - [ ] Add locales and English language
   - [x] Use localStorage to make last saved data appear instantly after page refresh (which might look strange with cards, but is a must-have for user profile information)
