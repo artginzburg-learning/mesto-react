@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
 
@@ -6,13 +6,13 @@ import PopupWithForm from '../PopupWithForm';
 import PopupInput from '../PopupInput';
 
 export default function EditProfilePopup(props) {
-  const [name, setName] = React.useState('');
-  const [about, setAbout] = React.useState('');
+  const [name, setName] = useState('');
+  const [about, setAbout] = useState('');
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useCurrentUserDispatcher();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setName(currentUser.name);
     setAbout(currentUser.about);
   }, [currentUser]);

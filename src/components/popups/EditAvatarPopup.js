@@ -1,4 +1,4 @@
-import { createRef } from 'react';
+import { useRef } from 'react';
 
 import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
 
@@ -6,7 +6,7 @@ import PopupWithForm from '../PopupWithForm';
 import PopupInput from '../PopupInput';
 
 export default function EditAvatarPopup(props) {
-  const ref = createRef();
+  const ref = useRef();
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useCurrentUserDispatcher();
