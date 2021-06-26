@@ -1,10 +1,12 @@
 import { popupSelectors } from '../../utils/utils';
 
+import Popup from '../Popup';
+
 function ImagePopup(props) {
   const card = props.card;
 
   return (
-    <section onClick={props.onClose} className={'popup popup_type_image' + (props.isOpen ? ' popup_opened' : '')} id="image-viewer">
+    <Popup isOpen={props.isOpen} onClick={props.onClose} className="popup_type_image" id="image-viewer">
       <figure className="popup__figure">
 
         <button type="button" className={`${popupSelectors.closeButtonClass} ${popupSelectors.closeButtonClass}_parent-corners_straight`} />
@@ -12,7 +14,7 @@ function ImagePopup(props) {
         <figcaption className="popup__caption">{card.name}</figcaption>
 
       </figure>
-    </section>
+    </Popup>
   );
 }
 

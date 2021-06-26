@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
-
 import { popupSelectors } from '../utils/utils';
 
-function PopupWithForm(props) {
-  const [ classNameEnding, setClassNameEnding ] = useState('');
-  const [ shouldAppearInDOM, setShouldAppearInDOM ] = useState(false);
+import Popup from './Popup';
 
+const defaultButtonTitle = 'Сохранить';
+
+function PopupWithForm(props) {
   function handleSubmit(e) {
     if (props.onSubmit) {
       e.preventDefault();
@@ -18,34 +17,10 @@ function PopupWithForm(props) {
     }
   }
 
-  function popupIsOpening() {
-    setShouldAppearInDOM(true);
-    setTimeout(() => {
-      setClassNameEnding(' popup_opened');
-    }, 5);
-  }
-
-  function popupIsClosing() {
-    setClassNameEnding('');
-    setTimeout(() => {
-      setShouldAppearInDOM(false);
-    }, 300);
-  }
-
-  useEffect(() => {
-    if (!props.isOpen) {
-      document.activeElement.blur(); // fixes mobile keyboard being stuck on the screen after form submission (due to `event.preventDefault()`)
-    }
-
-    props.isOpen ? popupIsOpening() : popupIsClosing();
-  }, [props.isOpen]);
-
-  if (!shouldAppearInDOM) {
-    return null;
-  }
+  const buttonTitle = props.buttonTitle ?? defaultButtonTitle;
 
   return (
-    <section onClick={props.onClose} className={`popup${classNameEnding}`} id={props.name}>
+    <Popup isOpen={props.isOpen} onClick={props.onClose} id={props.name}>
       <div className="popup__container">
 
         <button type="reset" className={popupSelectors.closeButtonClass} />
@@ -55,12 +30,12 @@ function PopupWithForm(props) {
 
           {props.children}
 
-          <button type="submit" className="popup__button">{props.buttonTitle ?? 'Сохранить'}</button>
+          <button type="submit" className="popup__button">{buttonTitle}</button>
 
         </form>
 
       </div>
-    </section>
+    </Popup>
   );
 }
 
