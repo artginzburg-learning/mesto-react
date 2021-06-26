@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import PopupWithForm from '../PopupWithForm';
 
-import PopupInput from './PopupInput';
+import PopupInput from '../PopupInput';
 
 const defaults = {
   title: '',

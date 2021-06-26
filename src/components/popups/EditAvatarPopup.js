@@ -4,7 +4,7 @@ import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../c
 
 import PopupWithForm from '../PopupWithForm';
 
-import PopupInput from './PopupInput';
+import PopupInput from '../PopupInput';
 
 export default function EditAvatarPopup(props) {
   const ref = createRef();
