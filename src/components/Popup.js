@@ -21,7 +21,7 @@ export default function Popup(props) {
       setShouldAppearInDOM(!isOpenedByDefault);
       const showingTimout = setTimeout(() => {
         setClassNameForAnimation(classNameOpened);
-      }, 5);
+      }, 10);
 
       return () =>
         clearTimeout(showingTimout);

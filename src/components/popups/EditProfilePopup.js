@@ -3,7 +3,6 @@ import React from 'react';
 import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
 
 import PopupWithForm from '../PopupWithForm';
-
 import PopupInput from '../PopupInput';
 
 export default function EditProfilePopup(props) {
