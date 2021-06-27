@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 
-import PopupWithForm from '../PopupWithForm';
-import PopupInput from '../PopupInput';
+import PopupWithForm from './PopupWithForm';
+import PopupInput from './PopupInput';
 
 const defaults = {
   title: '',

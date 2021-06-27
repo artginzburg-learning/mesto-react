@@ -1,8 +1,8 @@
 import { memo } from 'react';
 
-import { popupSelectors } from '../../utils/utils';
+import { popupSelectors } from '../utils/utils';
 
-import Popup from '../Popup';
+import Popup from './Popup';
 
 const ImagePopup = memo(props => {
   const card = props.card;

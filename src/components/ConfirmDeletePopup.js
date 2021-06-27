@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import PopupWithForm from '../PopupWithForm';
+import PopupWithForm from './PopupWithForm';
 
 const ConfirmDeletePopup = memo(props => {
   function handleSubmit() {

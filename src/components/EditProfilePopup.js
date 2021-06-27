@@ -1,9 +1,9 @@
 import { useState, useEffect, memo } from 'react';
 
-import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
+import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../contexts/CurrentUserContext';
 
-import PopupWithForm from '../PopupWithForm';
-import PopupInput from '../PopupInput';
+import PopupWithForm from './PopupWithForm';
+import PopupInput from './PopupInput';
 
 const EditProfilePopup = memo(props => {
   const [name, setName] = useState('');

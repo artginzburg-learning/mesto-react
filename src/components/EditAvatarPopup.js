@@ -1,9 +1,9 @@
 import { memo, useRef } from 'react';
 
-import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
+import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../contexts/CurrentUserContext';
 
-import PopupWithForm from '../PopupWithForm';
-import PopupInput from '../PopupInput';
+import PopupWithForm from './PopupWithForm';
+import PopupInput from './PopupInput';
 
 const EditAvatarPopup = memo(props => {
   const ref = useRef();
