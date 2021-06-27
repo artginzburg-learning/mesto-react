@@ -30,7 +30,7 @@ export default function AddPlacePopup(props) {
   }
 
   return (
-    <PopupWithForm {...props} onReset={handleReset} onSubmit={handleSubmit} title="Новое место" name="element-editor" buttonTitle="Создать">
+    <PopupWithForm {...props} onSubmit={handleSubmit} onReset={handleReset} title="Новое место" name="element-editor" buttonTitle="Создать">
 
       <PopupInput isFocused={props.isOpen} value={title} onChange={handleTitleChange} name="title" id="element-title" placeholder="Название" maxLength="30" />
 

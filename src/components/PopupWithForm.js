@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
+
 import { popupSelectors } from '../utils/utils';
+import enableValidation from '../utils/enableValidation';
 
 import Popup from './Popup';
 
@@ -17,10 +20,23 @@ function PopupWithForm(props) {
     }
   }
 
+  const popupId = props.name;
+
+  useEffect(() => {
+    if (props.isOpen) {
+      const validationTimeout = setTimeout(() => {
+        enableValidation(popupId);
+      }, 1);
+
+      return () =>
+        clearTimeout(validationTimeout);
+    }
+  }, [popupId, props.isOpen]);
+
   const buttonTitle = props.buttonTitle ?? defaultButtonTitle;
 
   return (
-    <Popup isOpen={props.isOpen} onClick={props.onClose} id={props.name}>
+    <Popup isOpen={props.isOpen} onClick={props.onClose} id={popupId}>
       <div className="popup__container">
 
         <button type="reset" className={popupSelectors.closeButtonClass} />

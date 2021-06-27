@@ -56,8 +56,12 @@ export default class FormValidator {
   _setListeners = () => {
     this._element.addEventListener('reset', this._resetFormErrors);
 
-    this._inputList.forEach(inputElement =>
-      inputElement.addEventListener('input', () => this._validationHandler(inputElement))
+    this._inputList.forEach(inputElement => {
+      if (inputElement.value) {
+        this._validationHandler(inputElement);
+      }
+      inputElement.addEventListener('input', () => this._validationHandler(inputElement));
+    }
     );
   }
 }
