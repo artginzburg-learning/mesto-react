@@ -3,7 +3,7 @@ import React from 'react';
 import useStateWithLocalStorage from '../hooks/useStateWithLocalStorage';
 import api from '../utils/api';
 
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { CurrentUserStateContext } from '../contexts/CurrentUserContext';
 
 import Header from './Header';
 import Main from './Main';
@@ -27,7 +27,7 @@ export default function App() {
   const [cards, setCards] = useStateWithLocalStorage('cards', []);
 
 
-  const currentUser = useCurrentUser();
+  const currentUser = React.useContext(CurrentUserStateContext);
 
   React.useEffect(() => {
     api.getInitialCards().then(setCards);

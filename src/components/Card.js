@@ -1,13 +1,13 @@
-import { memo } from 'react';
+import { memo, useContext } from 'react';
 
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { CurrentUserStateContext } from '../contexts/CurrentUserContext';
 
 const Card = memo(props => {
   const card = props.card;
 
   card.likes = card.likes ?? [];
 
-  const currentUser = useCurrentUser();
+  const currentUser = useContext(CurrentUserStateContext);
 
   if (card.isTemporarilyLocal) {
     card.owner = currentUser;

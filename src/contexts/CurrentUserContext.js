@@ -28,14 +28,6 @@ function CurrentUserProvider({ children }) {
   );
 }
 
-function useCurrentUser() {
-  const context = React.useContext(CurrentUserStateContext);
-  if (context === undefined) {
-    throw new Error('useCurrentUser must be used within a CurrentUserProvider');
-  }
-  return context;
-}
-
 function useCurrentUserDispatcher() {
   const context = React.useContext(CurrentUserDispatchContext);
   if (context === undefined) {
@@ -63,4 +55,4 @@ async function sendApiUpdate(dispatch, user, updates, func) {
   }
 }
 
-export { CurrentUserProvider, useCurrentUser, useCurrentUserDispatcher, sendApiUpdate };
+export { CurrentUserStateContext, CurrentUserProvider, useCurrentUserDispatcher, sendApiUpdate };
