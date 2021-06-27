@@ -6,8 +6,6 @@ import reportWebVitals from './reportWebVitals';
 
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
 
-// import enableValidations from './utils/enableValidations';
-
 ReactDOM.render(
   <React.StrictMode>
     <CurrentUserProvider>
@@ -16,8 +14,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// enableValidations();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

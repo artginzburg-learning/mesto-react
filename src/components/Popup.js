@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 const popupAnimationDuration = 300;
 
@@ -8,7 +8,7 @@ const classNameOpened = ` ${defaultClassName}_opened`;
 const isOpenedByDefault = false;
 const emptyString = '';
 
-export default function Popup(props) {
+const Popup = memo(props => {
   const [ classNameForAnimation, setClassNameForAnimation ] = useState(emptyString);
   const [ shouldAppearInDOM, setShouldAppearInDOM ] = useState(isOpenedByDefault);
 
@@ -49,4 +49,6 @@ export default function Popup(props) {
       {props.children}
     </section>
   );
-}
+});
+
+export default Popup;

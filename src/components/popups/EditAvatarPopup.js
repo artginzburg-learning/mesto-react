@@ -1,11 +1,11 @@
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 
 import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
 
 import PopupWithForm from '../PopupWithForm';
 import PopupInput from '../PopupInput';
 
-export default function EditAvatarPopup(props) {
+const EditAvatarPopup = memo(props => {
   const ref = useRef();
 
   const currentUser = useCurrentUser();
@@ -26,4 +26,6 @@ export default function EditAvatarPopup(props) {
 
     </PopupWithForm>
   );
-}
+});
+
+export default EditAvatarPopup;

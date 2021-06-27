@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 import PopupWithForm from '../PopupWithForm';
 import PopupInput from '../PopupInput';
@@ -8,7 +8,7 @@ const defaults = {
   link: ''
 };
 
-export default function AddPlacePopup(props) {
+const AddPlacePopup = memo(props => {
   const [title, setTitle] = useState(defaults.title);
   const [link, setLink] = useState(defaults.link);
 
@@ -38,4 +38,6 @@ export default function AddPlacePopup(props) {
 
     </PopupWithForm>
   );
-}
+});
+
+export default AddPlacePopup;

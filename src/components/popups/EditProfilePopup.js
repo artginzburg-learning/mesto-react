@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 import { useCurrentUser, useCurrentUserDispatcher, sendApiUpdate } from '../../contexts/CurrentUserContext';
 
 import PopupWithForm from '../PopupWithForm';
 import PopupInput from '../PopupInput';
 
-export default function EditProfilePopup(props) {
+const EditProfilePopup = memo(props => {
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
 
@@ -43,4 +43,6 @@ export default function EditProfilePopup(props) {
 
     </PopupWithForm>
   );
-}
+});
+
+export default EditProfilePopup;

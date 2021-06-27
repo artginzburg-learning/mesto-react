@@ -1,8 +1,10 @@
+import { memo } from 'react';
+
 import { popupSelectors } from '../../utils/utils';
 
 import Popup from '../Popup';
 
-function ImagePopup(props) {
+const ImagePopup = memo(props => {
   const card = props.card;
 
   return (
@@ -16,6 +18,6 @@ function ImagePopup(props) {
       </figure>
     </Popup>
   );
-}
+});
 
 export default ImagePopup;

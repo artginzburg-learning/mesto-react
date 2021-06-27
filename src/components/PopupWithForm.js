@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 
 import { popupSelectors } from '../utils/utils';
 import enableValidation from '../utils/enableValidation';
@@ -7,18 +7,20 @@ import Popup from './Popup';
 
 const defaultButtonTitle = 'Сохранить';
 
-function PopupWithForm(props) {
-  function handleSubmit(e) {
-    if (props.onSubmit) {
+const PopupWithForm = memo(props => {
+  const { onSubmit, children } = props;
+
+  const handleSubmit = useCallback(e => {
+    if (onSubmit) {
       e.preventDefault();
 
-      props.onSubmit();
+      onSubmit(e);
     }
 
-    if (props.children) {
+    if (children) {
       e.target.reset();
     }
-  }
+  }, [children, onSubmit]);
 
   const popupId = props.name;
 
@@ -44,7 +46,7 @@ function PopupWithForm(props) {
 
         <form onSubmit={handleSubmit} onReset={props.onReset} className="popup__form" action="#">
 
-          {props.children}
+          {children}
 
           <button type="submit" className="popup__button">{buttonTitle}</button>
 
@@ -53,6 +55,6 @@ function PopupWithForm(props) {
       </div>
     </Popup>
   );
-}
+});
 
 export default PopupWithForm;

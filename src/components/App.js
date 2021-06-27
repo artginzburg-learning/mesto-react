@@ -75,7 +75,7 @@ export default function App() {
     setIsImagePopupOpen(false);
   }
 
-  function handleCardDelete(card) {
+  const handleCardDelete = React.useCallback(card => {
     const oldCards = cards;
 
     setCards(
@@ -92,7 +92,7 @@ export default function App() {
     ;
 
     closeAllPopups();
-  }
+  }, [cards, setCards]);
 
 
   function handleEditAvatarClick() {
@@ -119,11 +119,11 @@ export default function App() {
     setIsImagePopupOpen(true);
   }
 
-  function handlePopupClick(e) {
+  const handlePopupClick = React.useCallback(e => {
     if (e.target === e.currentTarget) {
       closeAllPopups();
     }
-  }
+  }, []);
 
   const handleUpdateUser = closeAllPopups;
   const handleUpdateAvatar = closeAllPopups;

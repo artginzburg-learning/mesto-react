@@ -1,6 +1,8 @@
+import { memo } from 'react';
+
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-function Card(props) {
+const Card = memo(props => {
   const card = props.card;
 
   card.likes = card.likes ?? [];
@@ -52,6 +54,6 @@ function Card(props) {
       </div>
     </li>
   );
-}
+});
 
 export default Card;

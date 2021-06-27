@@ -1,6 +1,8 @@
-import Card from './Card';
+import { memo, useMemo } from 'react';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+
+import Card from './Card';
 
 const maximumCardsQuantity = 30;
 
@@ -14,10 +16,12 @@ for (let i = 0; i < maximumCardsQuantity; i++) {
   defaultCards.push(defaultCard);
 }
 
-export default function Main(props) {
+const Main = memo(props => {
   const currentUser = useCurrentUser();
 
-  const cards = props.cards.length ? props.cards : defaultCards;
+  const cards = useMemo(() =>
+    props.cards.length ? props.cards : defaultCards
+  , [props.cards]);
 
   return (
     <main className="content">
@@ -44,4 +48,6 @@ export default function Main(props) {
 
     </main>
   );
-}
+});
+
+export default Main;
