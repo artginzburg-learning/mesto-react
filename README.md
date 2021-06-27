@@ -4,6 +4,8 @@
 
 Project 10: <kbd>[Reviewed and accepted version of the project](https://github.com/artginzburg/mesto-react/tree/project-10_final)</kbd>
 
+Project 11: <kbd>Currently in development</kbd>
+
 ## Description
 
 5th course work at the [Web-development](https://praktikum.yandex.ru/web/) faculty of [Yandex.Praktikum](https://praktikum.yandex.ru/)
@@ -40,12 +42,11 @@ In the project directory, you can run:
 ## To-do
 
 - Ideas (sorted by concern)
-  - [ ] Clear popups when they are not opened, but keep the open/close transition
-  - [ ] Dive into HOC for Popup or hotkey handling
   - [ ] Add locales and English language
+  - [x] Clear popups when they are not opened, but keep the open/close transition
   - [x] Use localStorage to make last saved data appear instantly after page refresh (which might look strange with cards, but is a must-have for user profile information)
   - [x] Create FormInput component that wraps up input, its error status, and repeating props
-  - [ ] Create Popup react component so that ImagePopup and PopupWithForm use exactly identical modal window logic
+  - [x] Create Popup react component so that ImagePopup and PopupWithForm use exactly identical modal window logic
 
 - Transfer all the features from *mesto* to *mesto-react*
   - [x] Live form validation
@@ -68,6 +69,7 @@ In the project directory, you can run:
 ## Links
 
 - [Checklist 10](https://code.s3.yandex.net/web-developer/checklists/new-program/checklist-10/index.html)
+- [Checklist 11](https://code.s3.yandex.net/web-developer/checklists/new-program/checklist-11/index.html)
 
 <br>
 <br>
