@@ -9,7 +9,7 @@ const defaultUserState = {
   avatar: '',
 };
 
-const CurrentUserStateContext = React.createContext();
+const CurrentUserContext = React.createContext();
 const CurrentUserDispatchContext = React.createContext();
 
 function CurrentUserProvider({ children }) {
@@ -20,11 +20,11 @@ function CurrentUserProvider({ children }) {
   }, [setCurrentUser]);
 
   return (
-    <CurrentUserStateContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
       <CurrentUserDispatchContext.Provider value={setCurrentUser}>
         {children}
       </CurrentUserDispatchContext.Provider>
-    </CurrentUserStateContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 
@@ -55,4 +55,4 @@ async function sendApiUpdate(dispatch, user, updates, func) {
   }
 }
 
-export { CurrentUserStateContext, CurrentUserProvider, useCurrentUserDispatcher, sendApiUpdate };
+export { CurrentUserContext, CurrentUserProvider, useCurrentUserDispatcher, sendApiUpdate };

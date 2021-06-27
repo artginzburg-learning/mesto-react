@@ -1,6 +1,6 @@
 import { memo, useContext, useMemo } from 'react';
 
-import { CurrentUserStateContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import Card from './Card';
 
@@ -17,7 +17,7 @@ for (let i = 0; i < maximumCardsQuantity; i++) {
 }
 
 const Main = memo(props => {
-  const currentUser = useContext(CurrentUserStateContext);
+  const currentUser = useContext(CurrentUserContext);
 
   const cards = useMemo(() =>
     props.cards.length ? props.cards : defaultCards
