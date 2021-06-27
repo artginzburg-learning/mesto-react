@@ -1,6 +1,5 @@
 import React from 'react';
 
-import useStateWithLocalStorage from '../hooks/useStateWithLocalStorage';
 import api from '../utils/api';
 
 const defaultUserState = {
@@ -11,22 +10,6 @@ const defaultUserState = {
 
 const CurrentUserContext = React.createContext();
 const CurrentUserDispatchContext = React.createContext();
-
-function CurrentUserProvider({ children }) {
-  const [currentUser, setCurrentUser] = useStateWithLocalStorage('currentUser', defaultUserState);
-
-  React.useEffect(() => {
-    api.getUserInfo().then(setCurrentUser);
-  }, [setCurrentUser]);
-
-  return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <CurrentUserDispatchContext.Provider value={setCurrentUser}>
-        {children}
-      </CurrentUserDispatchContext.Provider>
-    </CurrentUserContext.Provider>
-  );
-}
 
 function useCurrentUserDispatcher() {
   const context = React.useContext(CurrentUserDispatchContext);
@@ -55,4 +38,4 @@ async function sendApiUpdate(dispatch, user, updates, func) {
   }
 }
 
-export { CurrentUserContext, CurrentUserProvider, useCurrentUserDispatcher, sendApiUpdate };
+export { defaultUserState, CurrentUserContext, CurrentUserDispatchContext, useCurrentUserDispatcher, sendApiUpdate };

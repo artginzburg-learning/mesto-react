@@ -3,7 +3,7 @@ import React from 'react';
 import useStateWithLocalStorage from '../hooks/useStateWithLocalStorage';
 import api from '../utils/api';
 
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { defaultUserState, CurrentUserContext, CurrentUserDispatchContext } from '../contexts/CurrentUserContext';
 
 import Header from './Header';
 import Main from './Main';
@@ -16,6 +16,12 @@ import ConfirmDeletePopup from './ConfirmDeletePopup';
 import ImagePopup from './ImagePopup';
 
 export default function App() {
+  const [currentUser, setCurrentUser] = useStateWithLocalStorage('currentUser', defaultUserState);
+
+  React.useEffect(() => {
+    api.getUserInfo().then(setCurrentUser);
+  }, [setCurrentUser]);
+
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -26,8 +32,6 @@ export default function App() {
 
   const [cards, setCards] = useStateWithLocalStorage('cards', []);
 
-
-  const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     api.getInitialCards().then(setCards);
@@ -167,30 +171,32 @@ export default function App() {
   }, [escHandler]);
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserDispatchContext.Provider value={setCurrentUser}>
 
-      <Header />
-      <Main
-        onEditProfile={handleEditProfileClick}
-        onAddPlace={handleAddPlaceClick}
-        onEditAvatar={handleEditAvatarClick}
-        cards={cards}
-        onCardClick={handleCardClick}
-        onCardLike={handleCardLike}
-        onCardDelete={handleConfirmDeleteClick}
-      />
-      <Footer />
+        <Header />
+        <Main
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditAvatar={handleEditAvatarClick}
+          cards={cards}
+          onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          onCardDelete={handleConfirmDeleteClick}
+        />
+        <Footer />
 
-      <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={handlePopupClick} />
+        <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={handlePopupClick} />
 
-      <AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={handlePopupClick} />
+        <AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={handlePopupClick} />
 
-      <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={handlePopupClick} />
+        <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={handlePopupClick} />
 
-      <ConfirmDeletePopup card={selectedCard} onCardDelete={handleCardDelete} isOpen={isConfirmDeletePopupOpen} onClose={handlePopupClick} />
+        <ConfirmDeletePopup card={selectedCard} onCardDelete={handleCardDelete} isOpen={isConfirmDeletePopupOpen} onClose={handlePopupClick} />
 
-      <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={handlePopupClick} />
+        <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={handlePopupClick} />
 
-    </>
+      </CurrentUserDispatchContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
