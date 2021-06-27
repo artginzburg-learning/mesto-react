@@ -42,6 +42,7 @@ In the project directory, you can run:
 ## To-do
 
 - Ideas (sorted by concern)
+  - [ ] Move popups to React.createPortal and other container
   - [ ] Add locales and English language
   - [x] Clear popups when they are not opened, but keep the open/close transition
   - [x] Use localStorage to make last saved data appear instantly after page refresh (which might look strange with cards, but is a must-have for user profile information)
