@@ -1,7 +1,6 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 
 import { popupSelectors } from '../utils/utils';
-import enableValidation from '../utils/enableValidation';
 
 import Popup from './Popup';
 
@@ -22,23 +21,10 @@ const PopupWithForm = memo(props => {
     }
   }, [children, onSubmit]);
 
-  const popupId = props.name;
-
-  useEffect(() => {
-    if (props.isOpen) {
-      const validationTimeout = setTimeout(() => {
-        enableValidation(popupId);
-      }, 1);
-
-      return () =>
-        clearTimeout(validationTimeout);
-    }
-  }, [popupId, props.isOpen]);
-
   const buttonTitle = props.buttonTitle ?? defaultButtonTitle;
 
   return (
-    <Popup isOpen={props.isOpen} onClick={props.onClose} id={popupId}>
+    <Popup isOpen={props.isOpen} onClick={props.onClose} id={props.name}>
       <div className="popup__container">
 
         <button type="reset" className={popupSelectors.closeButtonClass} />
