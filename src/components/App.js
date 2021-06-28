@@ -1,6 +1,5 @@
 import React from 'react';
 
-import useStateWithLocalStorage from '../hooks/useStateWithLocalStorage';
 import api from '../utils/api';
 
 import { defaultUserState, CurrentUserContext, CurrentUserDispatchContext } from '../contexts/CurrentUserContext';
@@ -16,7 +15,7 @@ import ConfirmDeletePopup from './ConfirmDeletePopup';
 import ImagePopup from './ImagePopup';
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useStateWithLocalStorage('currentUser', defaultUserState);
+  const [currentUser, setCurrentUser] = React.useState(defaultUserState);
 
   React.useEffect(() => {
     api.getUserInfo().then(setCurrentUser);
@@ -30,7 +29,7 @@ export default function App() {
 
   const [selectedCard, setSelectedCard] = React.useState({});
 
-  const [cards, setCards] = useStateWithLocalStorage('cards', []);
+  const [cards, setCards] = React.useState([]);
 
 
   React.useEffect(() => {
