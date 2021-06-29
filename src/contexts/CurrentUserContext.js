@@ -24,7 +24,7 @@ function objectsAreEqual(first, second) {
 }
 
 async function sendApiUpdate(dispatch, user, updates, func) {
-  const expectedUser = {...user, ...updates};
+  const expectedUser = { ...user, ...updates };
   dispatch(expectedUser);
 
   try {
@@ -38,4 +38,10 @@ async function sendApiUpdate(dispatch, user, updates, func) {
   }
 }
 
-export { defaultUserState, CurrentUserContext, CurrentUserDispatchContext, useCurrentUserDispatcher, sendApiUpdate };
+export {
+  defaultUserState,
+  CurrentUserContext,
+  CurrentUserDispatchContext,
+  useCurrentUserDispatcher,
+  sendApiUpdate,
+};

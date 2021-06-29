@@ -5,7 +5,7 @@ import PopupInput from './PopupInput';
 
 const defaults = {
   title: '',
-  link: ''
+  link: '',
 };
 
 const AddPlacePopup = memo(props => {
@@ -30,12 +30,32 @@ const AddPlacePopup = memo(props => {
   }
 
   return (
-    <PopupWithForm {...props} onSubmit={handleSubmit} onReset={handleReset} title="Новое место" name="element-editor" buttonTitle="Создать">
+    <PopupWithForm
+      {...props}
+      onSubmit={handleSubmit}
+      onReset={handleReset}
+      title="Новое место"
+      name="element-editor"
+      buttonTitle="Создать"
+    >
+      <PopupInput
+        isFocused={props.isOpen}
+        value={title}
+        onChange={handleTitleChange}
+        name="title"
+        id="element-title"
+        placeholder="Название"
+        maxLength="30"
+      />
 
-      <PopupInput isFocused={props.isOpen} value={title} onChange={handleTitleChange} name="title" id="element-title" placeholder="Название" maxLength="30" />
-
-      <PopupInput value={link} onChange={handleLinkChange} type="url" name="link" id="element-link" placeholder="Ссылка на картинку" />
-
+      <PopupInput
+        value={link}
+        onChange={handleLinkChange}
+        type="url"
+        name="link"
+        id="element-link"
+        placeholder="Ссылка на картинку"
+      />
     </PopupWithForm>
   );
 });

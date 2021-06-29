@@ -3,7 +3,11 @@ import React from 'react';
 import useStateWithLocalStorage from '../hooks/useStateWithLocalStorage';
 import api from '../utils/api';
 
-import { defaultUserState, CurrentUserContext, CurrentUserDispatchContext } from '../contexts/CurrentUserContext';
+import {
+  defaultUserState,
+  CurrentUserContext,
+  CurrentUserDispatchContext,
+} from '../contexts/CurrentUserContext';
 
 import Header from './Header';
 import Main from './Main';
@@ -32,7 +36,6 @@ export default function App() {
 
   const [cards, setCards] = useStateWithLocalStorage('cards', []);
 
-
   React.useEffect(() => {
     api.getInitialCards().then(setCards);
   }, [setCards]);
@@ -46,25 +49,13 @@ export default function App() {
       ? card.likes.filter(like => like._id !== currentUser._id)
       : [...card.likes, currentUser];
 
-    const expectedCard = {...card, likes: expectedCardLikes};
+    const expectedCard = { ...card, likes: expectedCardLikes };
 
-    setCards(
-      cards.map(c =>
-        c._id === card._id
-          ? expectedCard
-          : c
-      )
-    );
+    setCards(cards.map(c => (c._id === card._id ? expectedCard : c)));
 
     try {
       const newCard = await api.changeLikeCardStatus(card._id, !isLiked);
-      setCards(
-        cards.map(c =>
-          c._id === card._id
-            ? newCard
-            : c
-        )
-      );
+      setCards(cards.map(c => (c._id === card._id ? newCard : c)));
     } catch (error) {
       setCards(oldCards);
       throw error;
@@ -79,25 +70,21 @@ export default function App() {
     setIsImagePopupOpen(false);
   }
 
-  const handleCardDelete = React.useCallback(card => {
-    const oldCards = cards;
+  const handleCardDelete = React.useCallback(
+    card => {
+      const oldCards = cards;
 
-    setCards(
-      cards.filter(c =>
-        c._id !== card._id
-      )
-    );
+      setCards(cards.filter(c => c._id !== card._id));
 
-    api.deleteCard(card._id)
-      .catch(error => {
+      api.deleteCard(card._id).catch(error => {
         setCards(oldCards);
         throw error;
-      })
-    ;
+      });
 
-    closeAllPopups();
-  }, [cards, setCards]);
-
+      closeAllPopups();
+    },
+    [cards, setCards]
+  );
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -138,22 +125,18 @@ export default function App() {
     const expectedCard = {
       isTemporarilyLocal: true,
       name: title,
-      link
+      link,
     };
 
     setCards([expectedCard, ...cards]);
 
-    api.addCard(title, link)
-      .then(newCard =>
-        setCards([newCard, ...cards])
-      )
-      .catch(() =>
-        setCards(oldCards)
-      );
+    api
+      .addCard(title, link)
+      .then(newCard => setCards([newCard, ...cards]))
+      .catch(() => setCards(oldCards));
 
     closeAllPopups();
   }
-
 
   const escHandler = React.useCallback(e => {
     if (e.key === 'Escape') {
@@ -162,18 +145,16 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
-    const listenerArgs = [ 'keydown', escHandler, false ];
+    const listenerArgs = ['keydown', escHandler, false];
 
     document.addEventListener(...listenerArgs);
 
-    return () =>
-      document.removeEventListener(...listenerArgs);
+    return () => document.removeEventListener(...listenerArgs);
   }, [escHandler]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentUserDispatchContext.Provider value={setCurrentUser}>
-
         <Header />
         <Main
           onEditProfile={handleEditProfileClick}
@@ -186,16 +167,32 @@ export default function App() {
         />
         <Footer />
 
-        <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={handlePopupClick} />
+        <EditProfilePopup
+          onUpdateUser={handleUpdateUser}
+          isOpen={isEditProfilePopupOpen}
+          onClose={handlePopupClick}
+        />
 
-        <AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={handlePopupClick} />
+        <AddPlacePopup
+          onAddPlace={handleAddPlaceSubmit}
+          isOpen={isAddPlacePopupOpen}
+          onClose={handlePopupClick}
+        />
 
-        <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={handlePopupClick} />
+        <EditAvatarPopup
+          onUpdateAvatar={handleUpdateAvatar}
+          isOpen={isEditAvatarPopupOpen}
+          onClose={handlePopupClick}
+        />
 
-        <ConfirmDeletePopup card={selectedCard} onCardDelete={handleCardDelete} isOpen={isConfirmDeletePopupOpen} onClose={handlePopupClick} />
+        <ConfirmDeletePopup
+          card={selectedCard}
+          onCardDelete={handleCardDelete}
+          isOpen={isConfirmDeletePopupOpen}
+          onClose={handlePopupClick}
+        />
 
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={handlePopupClick} />
-
       </CurrentUserDispatchContext.Provider>
     </CurrentUserContext.Provider>
   );

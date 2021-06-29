@@ -13,23 +13,25 @@ const PopupInput = forwardRef((props, forwardedRef) => {
 
   const required = props.required ?? defaults.required;
 
-  const conditionalMinLength = (type === defaults.type)
-    ? defaults.minLength
-    : null
-  ;
+  const conditionalMinLength = type === defaults.type ? defaults.minLength : null;
   const minLength = props.minLength ?? conditionalMinLength;
 
   const finalProps = {
     type,
     minLength,
     required,
-    ref
+    ref,
   };
 
   const { isFocused, ...inputProps } = props;
 
   useEffect(() => {
-    if (isFocused && ref && ref.current && (ref.current.parentElement !== document.activeElement.parentElement)) {
+    if (
+      isFocused &&
+      ref &&
+      ref.current &&
+      ref.current.parentElement !== document.activeElement.parentElement
+    ) {
       setTimeout(() => {
         ref && ref.current && ref.current.focus();
       }, 50);
@@ -41,7 +43,7 @@ const PopupInput = forwardRef((props, forwardedRef) => {
       <input {...inputProps} className="popup__input" {...finalProps} />
       <p className="popup__error" id={`${props.id}-error`} />
     </>
-  )
-})
+  );
+});
 
 export default PopupInput;

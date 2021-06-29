@@ -8,7 +8,13 @@ const ConfirmDeletePopup = memo(props => {
   }
 
   return (
-    <PopupWithForm {...props} onSubmit={handleSubmit} title="Вы уверены?" name="delete-confirmation" buttonTitle="Да" />
+    <PopupWithForm
+      {...props}
+      onSubmit={handleSubmit}
+      title="Вы уверены?"
+      name="delete-confirmation"
+      buttonTitle="Да"
+    />
   );
 });
 

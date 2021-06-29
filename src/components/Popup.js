@@ -9,8 +9,8 @@ const isOpenedByDefault = false;
 const emptyString = '';
 
 const Popup = memo(props => {
-  const [ classNameForAnimation, setClassNameForAnimation ] = useState(emptyString);
-  const [ shouldAppearInDOM, setShouldAppearInDOM ] = useState(isOpenedByDefault);
+  const [classNameForAnimation, setClassNameForAnimation] = useState(emptyString);
+  const [shouldAppearInDOM, setShouldAppearInDOM] = useState(isOpenedByDefault);
 
   useEffect(() => {
     if (!props.isOpen) {
@@ -23,16 +23,14 @@ const Popup = memo(props => {
         setClassNameForAnimation(classNameOpened);
       }, 10);
 
-      return () =>
-        clearTimeout(showingTimout);
+      return () => clearTimeout(showingTimout);
     } else {
       setClassNameForAnimation(emptyString);
       const hidingTimeout = setTimeout(() => {
         setShouldAppearInDOM(isOpenedByDefault);
       }, popupAnimationDuration);
 
-      return () =>
-        clearTimeout(hidingTimeout);
+      return () => clearTimeout(hidingTimeout);
     }
   }, [props.isOpen]);
 

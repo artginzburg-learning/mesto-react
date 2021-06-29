@@ -15,20 +15,17 @@ class Api {
 
   _paths = {
     users: 'users/me',
-    cards: 'cards'
+    cards: 'cards',
   };
 
-  _handleFetch = res =>
-    res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка: ${res.status}`);
+  _handleFetch = res => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
 
   _customFetch(target, method, body) {
     const options = {
-      headers: this._headers
+      headers: this._headers,
     };
 
-    if (method && (method !== 'GET')) {
+    if (method && method !== 'GET') {
       options.method = method;
       if (method !== 'DELETE') {
         options.headers['Content-Type'] = 'application/json';
@@ -39,8 +36,7 @@ class Api {
       options.body = JSON.stringify(body);
     }
 
-    return fetch(`${this._baseUrl}/${target}`, options)
-      .then(this._handleFetch);
+    return fetch(`${this._baseUrl}/${target}`, options).then(this._handleFetch);
   }
 
   getUserInfo() {
@@ -54,30 +50,29 @@ class Api {
   editProfile = ({ name, about }) =>
     this._customFetch(this._paths.users, 'PATCH', {
       name,
-      about
+      about,
     });
 
   addCard = (name, link) =>
     this._customFetch(this._paths.cards, 'POST', {
       name,
-      link
+      link,
     });
 
-  deleteCard = cardId =>
-    this._customFetch(`${this._paths.cards}/${cardId}`, 'DELETE');
+  deleteCard = cardId => this._customFetch(`${this._paths.cards}/${cardId}`, 'DELETE');
 
   changeLikeCardStatus = (cardId, status) =>
     this._customFetch(`${this._paths.cards}/likes/${cardId}`, status ? 'PUT' : 'DELETE');
 
   updateAvatar = ({ avatar }) =>
     this._customFetch(`${this._paths.users}/avatar`, 'PATCH', {
-      avatar
+      avatar,
     });
 }
 
 export default new Api({
   baseUrl: `${api.protocol}${api.url}/${api.version}/${cohortId}`,
   headers: {
-    authorization: token
-  }
-}); 
+    authorization: token,
+  },
+});

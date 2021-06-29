@@ -15,15 +15,13 @@ const Card = memo(props => {
 
   const isOwn = card.owner._id === currentUser._id;
 
-  const cardDeleteButtonClassName = (
-    'element__trash-button' + (isOwn ? ' element__trash-button_visible' : '')
-  );
+  const cardDeleteButtonClassName =
+    'element__trash-button' + (isOwn ? ' element__trash-button_visible' : '');
 
   const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-  const cardLikeButtonClassName = (
-    'element__like-button' + (isLiked ? ' element__like-button_active' : '')
-  );
+  const cardLikeButtonClassName =
+    'element__like-button' + (isLiked ? ' element__like-button_active' : '');
 
   function handleImageClick() {
     props.onCardClick(card);
@@ -47,9 +45,7 @@ const Card = memo(props => {
         <h2 className="element__title">{card.name}</h2>
         <div className="element__likes">
           <button onClick={handleLikeClick} type="button" className={cardLikeButtonClassName} />
-          <p className="element__like-counter">
-            {card.likes.length}
-          </p>
+          <p className="element__like-counter">{card.likes.length}</p>
         </div>
       </div>
     </li>

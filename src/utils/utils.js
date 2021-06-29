@@ -1,6 +1,6 @@
 export const popupSelectors = {
   closeButtonClass: 'popup__close-button',
-}
+};
 
 export const defaultFormConfig = {
   formSelector: '.popup__form',

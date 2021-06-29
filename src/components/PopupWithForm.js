@@ -10,17 +10,20 @@ const defaultButtonTitle = 'Сохранить';
 const PopupWithForm = memo(props => {
   const { onSubmit, children } = props;
 
-  const handleSubmit = useCallback(e => {
-    if (onSubmit) {
-      e.preventDefault();
+  const handleSubmit = useCallback(
+    e => {
+      if (onSubmit) {
+        e.preventDefault();
 
-      onSubmit(e);
-    }
+        onSubmit(e);
+      }
 
-    if (children) {
-      e.target.reset();
-    }
-  }, [children, onSubmit]);
+      if (children) {
+        e.target.reset();
+      }
+    },
+    [children, onSubmit]
+  );
 
   const popupId = props.name;
 
@@ -30,8 +33,7 @@ const PopupWithForm = memo(props => {
         enableValidation(popupId);
       }, 1);
 
-      return () =>
-        clearTimeout(validationTimeout);
+      return () => clearTimeout(validationTimeout);
     }
   }, [popupId, props.isOpen]);
 
@@ -40,18 +42,16 @@ const PopupWithForm = memo(props => {
   return (
     <Popup isOpen={props.isOpen} onClick={props.onClose} id={popupId}>
       <div className="popup__container">
-
         <button type="reset" className={popupSelectors.closeButtonClass} />
         <h2 className="popup__title">{props.title}</h2>
 
         <form onSubmit={handleSubmit} onReset={props.onReset} className="popup__form" action="#">
-
           {children}
 
-          <button type="submit" className="popup__button">{buttonTitle}</button>
-
+          <button type="submit" className="popup__button">
+            {buttonTitle}
+          </button>
         </form>
-
       </div>
     </Popup>
   );
