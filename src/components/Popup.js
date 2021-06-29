@@ -1,16 +1,17 @@
 import { useState, useEffect, memo } from 'react';
 
-const popupAnimationDuration = 300;
+const POPUP_ANIMATION_DURATION = 300;
 
-const defaultClassName = 'popup';
-const classNameOpened = ` ${defaultClassName}_opened`;
-
-const isOpenedByDefault = false;
-const emptyString = '';
+const defaults = {
+  className: 'popup',
+  classNameClosed: '',
+  isOpened: false,
+};
+defaults.classNameOpened = `${defaults.className}_opened`;
 
 const Popup = memo(props => {
-  const [classNameForAnimation, setClassNameForAnimation] = useState(emptyString);
-  const [shouldAppearInDOM, setShouldAppearInDOM] = useState(isOpenedByDefault);
+  const [classNameForAnimation, setClassNameForAnimation] = useState(defaults.classNameClosed);
+  const [shouldAppearInDOM, setShouldAppearInDOM] = useState(defaults.isOpened);
 
   useEffect(() => {
     if (!props.isOpen) {
@@ -18,17 +19,17 @@ const Popup = memo(props => {
     }
 
     if (props.isOpen) {
-      setShouldAppearInDOM(!isOpenedByDefault);
+      setShouldAppearInDOM(!defaults.isOpened);
       const showingTimout = setTimeout(() => {
-        setClassNameForAnimation(classNameOpened);
+        setClassNameForAnimation(defaults.classNameOpened);
       }, 10);
 
       return () => clearTimeout(showingTimout);
     } else {
-      setClassNameForAnimation(emptyString);
+      setClassNameForAnimation(defaults.classNameClosed);
       const hidingTimeout = setTimeout(() => {
-        setShouldAppearInDOM(isOpenedByDefault);
-      }, popupAnimationDuration);
+        setShouldAppearInDOM(defaults.isOpened);
+      }, POPUP_ANIMATION_DURATION);
 
       return () => clearTimeout(hidingTimeout);
     }
@@ -38,9 +39,11 @@ const Popup = memo(props => {
     return null;
   }
 
-  const passedClassName = props.className ? ` ${props.className} ` : '';
+  const classNames = [defaults.className, props.className, classNameForAnimation].filter(
+    el => el != null && el !== ''
+  );
 
-  const className = defaultClassName + passedClassName + classNameForAnimation;
+  const className = classNames.join(' ');
 
   return (
     <section onClick={props.onClick} className={className} id={props.id}>

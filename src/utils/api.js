@@ -1,5 +1,5 @@
-const cohortId = 'cohort-24';
-const token = '70313b07-c3c0-40aa-a296-04d0e6bc7885';
+const COHORT_ID = 'cohort-24';
+const TOKEN = '70313b07-c3c0-40aa-a296-04d0e6bc7885';
 
 const api = {
   url: 'mesto.nomoreparties.co',
@@ -71,8 +71,8 @@ class Api {
 }
 
 export default new Api({
-  baseUrl: `${api.protocol}${api.url}/${api.version}/${cohortId}`,
+  baseUrl: `${api.protocol}${api.url}/${api.version}/${COHORT_ID}`,
   headers: {
-    authorization: token,
+    authorization: TOKEN,
   },
 });

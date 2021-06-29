@@ -5,7 +5,6 @@ import api from '../utils/api';
 const defaultUserState = {
   name: 'Неизвестный',
   about: 'Потеряно соединение с сервером',
-  avatar: '',
 };
 
 const CurrentUserContext = React.createContext();

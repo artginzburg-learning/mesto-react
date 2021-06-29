@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import Card from './Card';
 
-const maximumCardsQuantity = 30;
+const MAXIMUM_CARDS_QUANTITY = 30;
 
 const defaultCard = {
   isTemporarilyLocal: true,
@@ -12,7 +12,7 @@ const defaultCard = {
 };
 
 const defaultCards = [];
-for (let i = 0; i < maximumCardsQuantity; i++) {
+for (let i = 0; i < MAXIMUM_CARDS_QUANTITY; i++) {
   defaultCards.push(defaultCard);
 }
 
