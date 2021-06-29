@@ -23,7 +23,10 @@ export default function App() {
   const [currentUser, setCurrentUser] = useStateWithLocalStorage('currentUser', defaultUserState);
 
   React.useEffect(() => {
-    api.getUserInfo().then(setCurrentUser);
+    api
+      .getUserInfo()
+      .then(setCurrentUser)
+      .catch(err => console.log('Couldnt get user info from the server', err));
   }, [setCurrentUser]);
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -37,7 +40,10 @@ export default function App() {
   const [cards, setCards] = useStateWithLocalStorage('cards', []);
 
   React.useEffect(() => {
-    api.getInitialCards().then(setCards);
+    api
+      .getInitialCards()
+      .then(setCards)
+      .catch(err => console.log('Couldnt get initial cards from the server', err));
   }, [setCards]);
 
   async function handleCardLike(card) {
