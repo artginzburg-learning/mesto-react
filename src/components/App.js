@@ -58,7 +58,7 @@ export default function App() {
       setCards(cards.map(c => (c._id === card._id ? newCard : c)));
     } catch (error) {
       setCards(oldCards);
-      throw error;
+      console.error(error);
     }
   }
 
