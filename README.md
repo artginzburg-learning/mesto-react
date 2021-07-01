@@ -4,7 +4,7 @@
 
 Project 10: <kbd>[Reviewed and accepted version of the project](https://github.com/artginzburg/mesto-react/tree/project-10_final)</kbd>
 
-Project 11: <kbd>Currently in development</kbd>
+Project 11: <kbd>[Reviewed and accepted version of the project](https://github.com/artginzburg/mesto-react/tree/project-11_final)</kbd>
 
 ## Description
 
@@ -42,6 +42,7 @@ In the project directory, you can run:
 ## To-do
 
 - Ideas (sorted by concern)
+
   - [ ] Move popups to React.createPortal and other container
   - [ ] Add locales and English language
   - [x] Clear popups when they are not opened, but keep the open/close transition
@@ -49,7 +50,7 @@ In the project directory, you can run:
   - [x] Create FormInput component that wraps up input, its error status, and repeating props
   - [x] Create Popup react component so that ImagePopup and PopupWithForm use exactly identical modal window logic
 
-- Transfer all the features from *mesto* to *mesto-react*
+- Transfer all the features from _mesto_ to _mesto-react_
   - [x] Live form validation
   - [x] Card features
   - [x] Profile features
