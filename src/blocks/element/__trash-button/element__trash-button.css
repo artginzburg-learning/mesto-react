@@ -21,11 +21,15 @@
 
   cursor: pointer;
 
-  transition-property: opacity;
+  transition-property: opacity transform;
   transition-duration: .2s;
 
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+}
+
+.element__trash-button:active {
+  transform: scale(.9);
 }
 
 @media (hover: hover) {

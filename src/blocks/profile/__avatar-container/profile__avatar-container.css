@@ -16,6 +16,13 @@
   /* reset default button styles */
   border: 0;
   padding: 0;
+
+  transition-property: transform;
+  transition-duration: .2s;
+}
+
+.profile__avatar-container:active {
+  transform: scale(.9);
 }
 
 .profile__avatar-container::before {

@@ -18,7 +18,7 @@
 
   cursor: pointer;
 
-  transition-property: opacity;
+  transition-property: opacity transform;
   transition-duration: .2s;
 
   top: -38px;
@@ -31,6 +31,7 @@
 .popup__close-button:active {
   pointer-events: none;
   opacity: .6;
+  transform: rotate(-45deg) scale(.9);
 }
 
 @media (hover: hover) {

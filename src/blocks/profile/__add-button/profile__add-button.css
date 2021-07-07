@@ -21,11 +21,15 @@
 
   padding: calc((50px - 22px) / 2 - 1px);
 
-  transition-property: opacity;
+  transition-property: opacity transform;
   transition-duration: .2s;
 
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+}
+
+.profile__add-button:active {
+  transform: scale(.95);
 }
 
 @media (hover: hover) {

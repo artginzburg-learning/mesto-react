@@ -21,6 +21,10 @@
   user-select: none;
 }
 
+.element__like-button:active {
+  transform: scale(.9);
+}
+
 @media (hover: hover) {
   .element__like-button:hover {
     opacity: .5;
