@@ -81,5 +81,5 @@ In the project directory, you can run:
   &nbsp;
   <code><a href="https://github.com/artginzburg/yandex.praktikum-portfolio">Portfolio</a></code>
   &nbsp;
-  <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+  <a href="https://github.com/artginzburg/react-mesto-auth">Next --></a>
 </p>
